@@ -6,11 +6,11 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/31 12:31:50 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:08:47 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/cub3d.h"
 
 int	check_filename(char *filename)
 {

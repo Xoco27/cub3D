@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:35:25 by cfleuret          #+#    #+#             */
-/*   Updated: 2024/12/04 16:26:56 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:08:45 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+
+#include "../include/cub3d.h"
 
 static int	create_stash(t_list **stash, char *buffer)
 {

@@ -6,10 +6,11 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:08:57 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/28 12:26:45 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:08:32 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+
+#include "../include/cub3d.h"
 
 int	check_rect(char	**map)
 {

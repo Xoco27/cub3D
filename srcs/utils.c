@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:17:51 by cfleuret          #+#    #+#             */
-/*   Updated: 2024/12/11 13:12:56 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:09:04 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+
+#include "../include/cub3d.h"
 
 void	clean_line(char *line)
 {

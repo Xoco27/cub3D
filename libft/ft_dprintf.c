@@ -6,11 +6,11 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:24:01 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/04/15 13:44:24 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:10:39 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 static int	ft_putchar(int fd, int l, char c)
 {
@@ -68,37 +68,3 @@ int	ft_dprintf(int fd, const char *f, ...)
 	va_end(a);
 	return (l);
 }
-/*
-int	main(void)
-{
-	char	c = 'c';
-	char	*s = "Hello";
-	int	*p;
-	p = (void *)1;
-	int	i = -10;
-	unsigned int	u = -1;
-	ft_printf("Je veux juste print\n");
-	ft_printf("%c\n%s\n%p\n%d\n%i\n%u\n%x\n%X\n%%\n", c, s, p, i, i, u, u, u);
-	printf("%c\n%s\n%p\n%d\n%i\n%u\n%x\n%X\n%%\n", c, s, p, i, i, u, u, u);
-	ft_printf("Test de renvoi : %d\n", ft_printf(" NULL %d NULL\n", i));
-	printf("Test de renvoi : %d\n", printf(" NULL %d NULL\n", i));
-	ft_printf("%c\n", c);
-	printf("%c\n", c);
-	ft_printf("%s\n", s);
-        printf("%s\n", s);
-	ft_printf("%p\n", p);
-        printf("%p\n", p);
-	ft_printf("%d\n", i);
-        printf("%d\n", i);
-	ft_printf("%i\n", i);
-        printf("%i\n", i);
-	ft_printf("%u\n", u);
-        printf("%u\n", u);
-	ft_printf("%X\n", u);
-        printf("%X\n", u);
-	ft_printf("%x\n", u);
-        printf("%x\n", u);
-	ft_printf("%%\n");
-	printf("%%\n");
-}
-*/

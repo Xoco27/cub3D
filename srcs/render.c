@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:19:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2024/12/13 19:02:14 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:09:01 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+
+#include "../include/cub3d.h"
 
 void	ft_exit(t_data *data)
 {

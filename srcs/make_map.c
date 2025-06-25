@@ -6,11 +6,11 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:48:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/31 12:28:47 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:08:59 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/cub3d.h"
 
 char	**make_tab(char **map, char **argv)
 {

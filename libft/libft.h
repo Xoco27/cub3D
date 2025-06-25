@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:22:42 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/04/22 14:29:58 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:13:11 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdint.h>
 # include <sys/wait.h>
 # include <stdbool.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -78,5 +79,11 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_dprintf(int fd, const char *f, ...);
+int		ft_printhex(int fd, char c, int l, unsigned int a);
+int		ft_printint(int fd, int l, int a);
+int		ft_printptr(int fd, int t, int l, void *a);
+int		ft_printstring(int fd, int l, char *a);
+int		ft_printuns(int fd, int l, unsigned int a);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/01/31 12:31:54 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:09:48 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/cub3d.h"
 
 void	set_win(t_data *data)
 {
@@ -48,11 +48,11 @@ int	on_keypress(int keysym, t_data *data)
 		left_char(data->map, data);
 	if (keysym == XK_Escape)
 		on_destroy(data);
-	ft_printf("move: %d\n", data->move);
+	printf("move: %d\n", data->move);
 	if (data->score == 0
 		&& data->map[data->player.pos_y][data->player.pos_x] == 'E')
 	{
-		ft_printf("You won in %d moves !\n", data->move);
+		printf("You won in %d moves !\n", data->move);
 		on_destroy(data);
 	}
 	return (0);

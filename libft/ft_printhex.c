@@ -6,11 +6,11 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 11:54:38 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/04/15 13:44:31 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:10:56 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 static int	ft_putchar(int fd, int l, char c)
 {

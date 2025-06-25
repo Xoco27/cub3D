@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   make_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2024/12/10 17:34:12 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:08:55 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+
+#include "../include/cub3d.h"
 
 void	pos(char **map, t_data *data)
 {
