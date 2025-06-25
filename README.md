@@ -1,1 +1,1 @@
-# Singe-3D
+# cub3D
