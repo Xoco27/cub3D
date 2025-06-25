@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/06/25 15:09:48 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 17:02:52 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,46 @@ int	on_destroy(t_data *data)
 	return (0);
 }
 
+void	print_player(void *img, double x, double y, t_data *data)
+{
+	mlx_put_image_to_window(data->mlx_ptr,
+		data->win_ptr, img, x, y);
+}
+
 int	on_keypress(int keysym, t_data *data)
 {
-	if (keysym == XK_s)
-		down_char(data->map, data);
-	if (keysym == XK_w)
-		up_char(data->map, data);
-	if (keysym == XK_d)
-		right_char(data->map, data);
-	if (keysym == XK_a)
-		left_char(data->map, data);
+	if (keysym == XK_s && data->player.pos_y < 1000)
+	{
+		data->player.pos_y += 0.5;
+		print_map(data->map, data);
+		print_player(data->player.down, data->player.pos_x, data->player.pos_y, data);
+	}
+	if (keysym == XK_w && data->player.pos_y > 0)
+	{
+		data->player.pos_y -= 0.5;
+		print_map(data->map, data);
+		print_player(data->player.down, data->player.pos_x, data->player.pos_y, data);
+	}
+	if (keysym == XK_a && data->player.pos_x > 0)
+	{
+		data->player.pos_x -= 0.5;
+		print_map(data->map, data);
+		print_player(data->player.down, data->player.pos_x, data->player.pos_y, data);
+	}
+	if (keysym == XK_d && data->player.pos_x < 1000)
+	{
+		data->player.pos_x += 0.5;
+		print_map(data->map, data);
+		print_player(data->player.down, data->player.pos_x, data->player.pos_y, data);
+	}
 	if (keysym == XK_Escape)
 		on_destroy(data);
-	printf("move: %d\n", data->move);
-	if (data->score == 0
-		&& data->map[data->player.pos_y][data->player.pos_x] == 'E')
-	{
-		printf("You won in %d moves !\n", data->move);
-		on_destroy(data);
-	}
 	return (0);
 }
 
 void	hook(t_data *data)
 {
-	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, on_keypress, data);
+	mlx_hook(data->win_ptr, 2, 1L << 0, on_keypress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask,
 		on_destroy, data);
 	mlx_loop(data->mlx_ptr);
@@ -78,8 +93,6 @@ int	main(int argc, char **argv)
 	data.map = make_tab(data.map, argv);
 	if (data.map == NULL)
 		return (perror("Error\nEmpty map"), 1);
-	if (another_check(&data) == 1)
-		return (1);
 	if (!data.map)
 		return (perror("Error\nMap making failed."), 1);
 	set_win(&data);

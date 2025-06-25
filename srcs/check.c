@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:08:57 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/06/25 15:08:32 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:59:45 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ int	check(char **map)
 	c = check_items(map);
 	if (c == 0)
 		return (perror("Error\nMap does not have any collectibles"), 0);
-	if (check_es(map) == 0)
-		return (perror("Error\nNo spawn or exit or too many of those"), 0);
 	else
 		return (c);
 }

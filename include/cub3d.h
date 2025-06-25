@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cubd.h                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/06/25 15:06:49 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:05:14 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ typedef struct s_player
 	void	*down;
 	void	*right;
 	void	*left;
-	int		width;
-	int		height;
-	int		pos_x;
-	int		pos_y;
+	double	width;
+	double	height;
+	double	pos_x;
+	double	pos_y;
 }		t_player;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:48:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/06/25 15:08:59 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:38:45 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,8 @@ void	print_map(char **map, t_data *data)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '0')
-				print_img(data->img.floor, x, y, data);
-			else if (map[y][x] == '1')
+			if (map[y][x] == '1')
 				print_img(data->img.wall, x, y, data);
-			else if (map[y][x] == 'C')
-				print_img(data->img.item, x, y, data);
-			else if (map[y][x] == 'E')
-				print_img(data->img.exit_closed, x, y, data);
-			else if (map[y][x] == 'P')
-				print_img(data->player.down, x, y, data);
 			x++;
 		}
 		y++;
