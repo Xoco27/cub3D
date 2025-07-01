@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_char.c                                        :+:      :+:    :+:   */
+/*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/01 15:26:29 by cfleuret         ###   ########.fr       */
+/*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
+/*   Updated: 2025/07/01 16:10:19 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	pos(char **map, t_data *data)
+void	ray(t_data *data)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (map[y])
+	while ()
 	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'P')
-			{
-				data->player.pos_x = x;
-				data->player.pos_y = y;
-				return ;
-			}
-			x++;
-		}
-		y++;
-		data->player.vector_x = 0;
-		data->player.vector_y = 1;
+		mlx_pixel_put(data->mlx_ptr, data->win_ptr,
+			data->player.pos_x + data->player.vector_x,
+			data->player.pos_y + data->player.vector_y, 0x000000);
+		data->player.vector_y += 1;
+		printf("%f\n", data->player.vector_y);
 	}
 }

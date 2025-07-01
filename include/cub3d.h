@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/06/30 15:13:13 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:00:26 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000000
 # endif
+# ifndef SPEED
+#  define SPEED 0.1
+# endif
 # ifndef TILE
 #  define TILE 128
 # endif
+# ifndef PI
+#  define PI 3.1415926535
+# endif
 
 # include <stdlib.h>
+# include <math.h>
 # include <unistd.h>
 # include <string.h>
 # include <ctype.h>
@@ -36,20 +43,15 @@ typedef struct s_map
 {
 	void	*floor;
 	void	*wall;
-	void	*exit_closed;
-	void	*exit_opened;
-	void	*item;
-	void	*spawn;
+	int		map_x;
+	int		map_y;
 	int		width;
 	int		height;
 }		t_map;
 
 typedef struct s_player
 {
-	void	*up;
 	void	*down;
-	void	*right;
-	void	*left;
 	double	width;
 	double	height;
 	double	pos_x;
@@ -99,5 +101,6 @@ int		non_valid(char **map);
 int		check_filename(char *filename);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
+void	ray(t_data *data);
 
 #endif

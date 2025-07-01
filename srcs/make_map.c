@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:48:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/06/30 15:05:07 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:58:39 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	initiate(t_data *data)
 	if (!data->mlx_ptr)
 		return (perror("Error\nFailure initiating mlx."), 1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr,
-			data->win_width, data->win_height, "So_long");
+			data->win_width, data->win_height, "Cub3D");
 	if (!data->win_ptr)
 		return (perror("Error\nFailure initiating window"), 1);
 	return (0);

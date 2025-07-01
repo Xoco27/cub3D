@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/01 13:29:48 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:02:29 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,25 @@ void	print_player(void *img, double x, double y, t_data *data)
 
 int	on_keypress(int keysym, t_data *data)
 {
-	int		map_x;
-	int		map_y;
-	double	speed;
 	double	next_x;
 	double	next_y;
 
-	speed = 0.1;
 	next_x = data->player.pos_x;
 	next_y = data->player.pos_y;
 	if (keysym == XK_w)
-		next_y -= speed;
-	else if (keysym == XK_s)
-		next_y += speed;
-	else if (keysym == XK_a)
-		next_x -= speed;
-	else if (keysym == XK_d)
-		next_x += speed;
-	map_x = (int)next_x;
-	map_y = (int)next_y;
+		next_y -= SPEED;
+	if (keysym == XK_s)
+		next_y += SPEED;
+	if (keysym == XK_a)
+		next_x -= SPEED;
+	if (keysym == XK_d)
+		next_x += SPEED;
+	data->img.map_x = (int)next_x;
+	data->img.map_y = (int)next_y;
 	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
-		&& map_y >= 0 && map_y < data->img.height
-		&& map_x >= 0 && map_x < data->img.width
-		&& data->map[map_y][map_x] != '1')
+		&& data->img.map_y >= 0 && data->img.map_y < data->img.height
+		&& data->img.map_x >= 0 && data->img.map_x < data->img.width
+		&& data->map[data->img.map_y][data->img.map_x] != '1')
 	{
 		data->player.pos_x = next_x;
 		data->player.pos_y = next_y;
@@ -74,6 +70,7 @@ int	on_keypress(int keysym, t_data *data)
 		print_player(data->player.down, data->player.pos_x,
 			data->player.pos_y, data);
 	}
+	ray(data);
 	if (keysym == XK_Escape)
 		on_destroy(data);
 	return (0);
