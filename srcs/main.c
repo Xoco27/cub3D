@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/06/25 17:02:52 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:29:48 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,40 @@ int	on_destroy(t_data *data)
 void	print_player(void *img, double x, double y, t_data *data)
 {
 	mlx_put_image_to_window(data->mlx_ptr,
-		data->win_ptr, img, x, y);
+		data->win_ptr, img, x * TILE, y * TILE);
 }
 
 int	on_keypress(int keysym, t_data *data)
 {
-	if (keysym == XK_s && data->player.pos_y < 1000)
+	int		map_x;
+	int		map_y;
+	double	speed;
+	double	next_x;
+	double	next_y;
+
+	speed = 0.1;
+	next_x = data->player.pos_x;
+	next_y = data->player.pos_y;
+	if (keysym == XK_w)
+		next_y -= speed;
+	else if (keysym == XK_s)
+		next_y += speed;
+	else if (keysym == XK_a)
+		next_x -= speed;
+	else if (keysym == XK_d)
+		next_x += speed;
+	map_x = (int)next_x;
+	map_y = (int)next_y;
+	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
+		&& map_y >= 0 && map_y < data->img.height
+		&& map_x >= 0 && map_x < data->img.width
+		&& data->map[map_y][map_x] != '1')
 	{
-		data->player.pos_y += 0.5;
+		data->player.pos_x = next_x;
+		data->player.pos_y = next_y;
 		print_map(data->map, data);
-		print_player(data->player.down, data->player.pos_x, data->player.pos_y, data);
-	}
-	if (keysym == XK_w && data->player.pos_y > 0)
-	{
-		data->player.pos_y -= 0.5;
-		print_map(data->map, data);
-		print_player(data->player.down, data->player.pos_x, data->player.pos_y, data);
-	}
-	if (keysym == XK_a && data->player.pos_x > 0)
-	{
-		data->player.pos_x -= 0.5;
-		print_map(data->map, data);
-		print_player(data->player.down, data->player.pos_x, data->player.pos_y, data);
-	}
-	if (keysym == XK_d && data->player.pos_x < 1000)
-	{
-		data->player.pos_x += 0.5;
-		print_map(data->map, data);
-		print_player(data->player.down, data->player.pos_x, data->player.pos_y, data);
+		print_player(data->player.down, data->player.pos_x,
+			data->player.pos_y, data);
 	}
 	if (keysym == XK_Escape)
 		on_destroy(data);

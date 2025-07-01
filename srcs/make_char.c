@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/06/25 16:32:11 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:45:36 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	pos(char **map, t_data *data)
 		{
 			if (map[y][x] == 'P')
 			{
-				printf("%d %d\n", x, y);
-				data->player.pos_x = x * 100;
-				data->player.pos_y = y * 100;
+				data->player.pos_x = x;
+				data->player.pos_y = y;
 				return ;
 			}
 			x++;
 		}
 		y++;
+		data->player.vector_x = 0;
+		data->player.vector_y = 1;
 	}
 }
