@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/01 16:02:29 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:25:25 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	on_keypress(int keysym, t_data *data)
 		next_x -= SPEED;
 	if (keysym == XK_d)
 		next_x += SPEED;
+	// if (keysym == XK_KP_Left || keysym == XK_KP_Right)
+	// 	rotate(data);
 	data->img.map_x = (int)next_x;
 	data->img.map_y = (int)next_y;
 	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)

@@ -49,6 +49,7 @@ clean:
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBFT_DIR)
+	rm -f $(NAME)
 re: fclean all
 
 .PHONY: all clean fclean re bonus

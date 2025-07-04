@@ -6,24 +6,23 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/01 16:00:26 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:41:37 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "../libft/libft.h"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000000
 # endif
 # ifndef SPEED
-#  define SPEED 0.1
+#  define SPEED 0.05
 # endif
 # ifndef TILE
 #  define TILE 128
 # endif
 # ifndef PI
-#  define PI 3.1415926535
+#  define PI 3.141592653589793
 # endif
 
 # include <stdlib.h>
@@ -58,6 +57,7 @@ typedef struct s_player
 	double	pos_y;
 	double	vector_x;
 	double	vector_y;
+	double	rotation_angle;
 }		t_player;
 
 typedef struct s_data
