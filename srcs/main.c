@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/03 15:25:25 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/26 18:29:00 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	on_keypress(int keysym, t_data *data)
 		print_player(data->player.down, data->player.pos_x,
 			data->player.pos_y, data);
 	}
-	ray(data);
+	ray_cast(data);
 	if (keysym == XK_Escape)
 		on_destroy(data);
 	return (0);

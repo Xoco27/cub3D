@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/03 15:41:37 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:19:59 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ typedef struct s_player
 	double	height;
 	double	pos_x;
 	double	pos_y;
-	double	vector_x;
-	double	vector_y;
-	double	rotation_angle;
+	double	angle;
 }		t_player;
 
 typedef struct s_data
@@ -68,10 +66,11 @@ typedef struct s_data
 	char		**copy;
 	int			win_width;
 	int			win_height;
-	int			score;
-	int			total;
 	int			move;
-	int			r;
+	double		fov;
+	double		num_rays;
+	double		delta_angle;
+	double		max_depth;
 	t_map		img;
 	t_player	player;
 }			t_data;
@@ -101,6 +100,6 @@ int		non_valid(char **map);
 int		check_filename(char *filename);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
-void	ray(t_data *data);
+void	ray_cast(t_data *data);
 
 #endif

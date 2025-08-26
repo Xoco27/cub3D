@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/03 14:03:56 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/26 17:25:44 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	pos(char **map, t_data *data)
 			x++;
 		}
 		y++;
-		data->player.vector_x = 0;
-		data->player.vector_y = 1;
+		data->player.angle = 0;
+		data->fov = PI / 3;
+		data->num_rays = data->win_width / 2;
+		data->delta_angle = data->fov / data->num_rays;
+		data->max_depth = 20;
 	}
 }
