@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/03 15:25:25 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/26 18:28:59 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,9 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (perror("Error\nNot enough or too much arguments."), 1);
-	if (check_filename(argv[1]) == 1)
-		return (perror("Error\nWrong file extension"), 1);
+	parse_args(&data, argv);
 	data.move = 0;
-	data.map = make_tab(data.map, argv);
+	// data.map = make_tab(data.map, argv);
 	if (data.map == NULL)
 		return (perror("Error\nEmpty map"), 1);
 	if (!data.map)
