@@ -57,22 +57,22 @@ int	on_keypress(int keysym, t_data *data)
 		next_x -= SPEED;
 	if (keysym == XK_d)
 		next_x += SPEED;
-	// if (keysym == XK_KP_Left || keysym == XK_KP_Right)
-	// 	rotate(data);
+	if (keysym == XK_KP_Left || keysym == XK_KP_Right)
+		rotate(data, keysym);
 	data->img.map_x = (int)next_x;
 	data->img.map_y = (int)next_y;
 	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
-		&& data->img.map_y >= 0 && data->img.map_y < data->img.height
-		&& data->img.map_x >= 0 && data->img.map_x < data->img.width
-		&& data->map[data->img.map_y][data->img.map_x] != '1')
+		&& next_y >= 0 && next_y < data->img.height &&
+    	next_x >= 0 && next_x < data->img.width &&
+   		 data->map[(int)next_y][(int)next_x] != '1')
 	{
 		data->player.pos_x = next_x;
 		data->player.pos_y = next_y;
 		print_map(data->map, data);
 		print_player(data->player.down, data->player.pos_x,
 			data->player.pos_y, data);
+		ray_cast(data);
 	}
-	ray_cast(data);
 	if (keysym == XK_Escape)
 		on_destroy(data);
 	return (0);
