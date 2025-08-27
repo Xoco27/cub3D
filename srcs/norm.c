@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:26:38 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 18:28:25 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:55:04 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,3 @@ void	update_pos(t_data *data, double next_x, double next_y, int keysym)
 		print_map(data->map, data);
 	}
 }
-
-
