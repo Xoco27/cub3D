@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 17:41:09 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:32:01 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,13 @@ int	on_destroy(t_data *data)
 	return (0);
 }
 
-void	print_player(void *img, double x, double y, t_data *data)
-{
-	mlx_put_image_to_window(data->mlx_ptr,
-		data->win_ptr, img, x * TILE, y * TILE);
-}
-
 int	on_keypress(int keysym, t_data *data)
 {
 	double	next_x;
 	double	next_y;
+	int		i;
 
+	i = 0;
 	next_x = data->player.pos_x;
 	next_y = data->player.pos_y;
 	if (keysym == XK_w)
@@ -61,17 +57,9 @@ int	on_keypress(int keysym, t_data *data)
 		rotate(data, keysym);
 	data->img.map_x = (int)next_x;
 	data->img.map_y = (int)next_y;
-	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
-		&& next_y >= 0 && next_y < data->img.height
-		&& next_x >= 0 && next_x < data->img.width
-		&& data->map[(int)next_y][(int)next_x] != '1')
-	{
-		data->player.pos_x = next_x;
-		data->player.pos_y = next_y;
-		print_map(data->map, data);
-	}
+	update_pos(data, next_x, next_y, keysym);
 	print_map(data->map, data);
-	ray_cast(data);
+	ray_cast(data, i);
 	if (keysym == XK_Escape)
 		on_destroy(data);
 	return (0);

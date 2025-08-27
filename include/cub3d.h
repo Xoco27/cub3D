@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 17:29:22 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:32:27 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_data
 	double		num_rays;
 	double		delta_angle;
 	double		max_depth;
+	double		depth_vert;
+	double		depth_hori;
 	t_map		img;
 	t_player	player;
 }			t_data;
@@ -100,7 +102,8 @@ int		non_valid(char **map);
 int		check_filename(char *filename);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
-void	ray_cast(t_data *data);
+void	ray_cast(t_data *data, int i);
 void	rotate(t_data *data, int keysym);
+void	update_pos(t_data *data, double next_x, double next_y, int keysym);
 
 #endif
