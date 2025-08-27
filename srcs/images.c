@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/01 15:22:38 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:41:30 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ void	create_images(t_data *data)
 {
 	wh(data);
 	data->img.wall = mlx_xpm_file_to_image(data->mlx_ptr,
-			"assets/wall.xpm", &data->img.width, &data->img.height);
+			"assets/wall.xpm", &data->player.width, &data->player.height);
 	data->img.floor = mlx_xpm_file_to_image(data->mlx_ptr,
-			"assets/floor.xpm", &data->img.width, &data->img.height);
+			"assets/floor.xpm", &data->player.width, &data->player.height);
 	data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
-			"assets/link_down.xpm", &data->img.width, &data->img.height);
+			"assets/link_down.xpm", &data->player.width, &data->player.height);
 	print_map((*data).map, data);
-	print_player(data->player.down, data->player.pos_x,
-		data->player.pos_y, data);
 }
 
 void	destroy(t_data *data)

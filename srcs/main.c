@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/26 18:29:00 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:41:09 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,21 @@ int	on_keypress(int keysym, t_data *data)
 		next_x -= SPEED;
 	if (keysym == XK_d)
 		next_x += SPEED;
-	if (keysym == XK_KP_Left || keysym == XK_KP_Right)
+	if (keysym == XK_Left || keysym == XK_Right)
 		rotate(data, keysym);
 	data->img.map_x = (int)next_x;
 	data->img.map_y = (int)next_y;
 	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
-		&& next_y >= 0 && next_y < data->img.height &&
-    	next_x >= 0 && next_x < data->img.width &&
-   		 data->map[(int)next_y][(int)next_x] != '1')
+		&& next_y >= 0 && next_y < data->img.height
+		&& next_x >= 0 && next_x < data->img.width
+		&& data->map[(int)next_y][(int)next_x] != '1')
 	{
 		data->player.pos_x = next_x;
 		data->player.pos_y = next_y;
 		print_map(data->map, data);
-		print_player(data->player.down, data->player.pos_x,
-			data->player.pos_y, data);
-		ray_cast(data);
 	}
+	print_map(data->map, data);
+	ray_cast(data);
 	if (keysym == XK_Escape)
 		on_destroy(data);
 	return (0);

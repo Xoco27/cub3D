@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/26 17:19:59 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:29:22 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ typedef struct s_map
 typedef struct s_player
 {
 	void	*down;
-	double	width;
-	double	height;
+	int		width;
+	int		height;
 	double	pos_x;
 	double	pos_y;
 	double	angle;
@@ -101,5 +101,6 @@ int		check_filename(char *filename);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
 void	ray_cast(t_data *data);
+void	rotate(t_data *data, int keysym);
 
 #endif
