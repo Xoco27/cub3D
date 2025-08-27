@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 16:57:38 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:29:01 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ void	free_tab(void **tab);
 void	fill_tab(int row, int column, int i, t_data *data);
 bool	validate_walls(char **map);
 int		validate_player_position(char **file);
+int		validate_elements(char **file);
 
 #endif

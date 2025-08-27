@@ -18,6 +18,8 @@ CUB3D =	srcs/get_next_line.c srcs/images.c srcs/main.c \
 			srcs/parsing/parse_file.c \
 			srcs/error_message.c \
 			srcs/parsing/check_player_pos.c \
+			srcs/parsing/check_elements.c \
+			srcs/free.c \
 
 OBJS = $(CUB3D:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

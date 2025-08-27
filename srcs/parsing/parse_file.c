@@ -6,52 +6,11 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:33:53 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/27 15:52:35 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:29:51 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-// static int	get_line_cub(char *path)
-// {
-// 	int		fd;
-// 	char	*line;
-// 	int		line_count;
-
-// 	line_count = 0;
-// 	fd = open(path, O_RDONLY);
-// 	if (fd < 0)
-// 		error_message(path, strerror(errno));
-// 	else
-// 	{
-// 		line = get_next_line(fd);
-// 		while (line != NULL)
-// 		{
-// 			line_count++;
-// 			free(line);
-// 			line = get_next_line(fd);
-// 		}
-// 		close(fd);
-// 	}
-// 	return (line_count);
-// }
-
-void	free_tab(void **tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	if (tab)
-	{
-		free(tab);
-		tab = NULL;
-	}
-}
 
 void	fill_tab(int row, int column, int i, t_data *data)
 {
