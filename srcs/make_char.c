@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/03 14:03:56 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:12:31 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	pos(char **map, t_data *data)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'P')
+			if (map[y][x] == 'P' /*|| map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W'*/)
 			{
 				data->player.pos_x = x;
 				data->player.pos_y = y;

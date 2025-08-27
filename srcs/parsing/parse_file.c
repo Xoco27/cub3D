@@ -6,35 +6,35 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:33:53 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/26 18:35:52 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:52:35 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	get_line(char *path)
-{
-	int		fd;
-	char	*line;
-	int		line_count;
+// static int	get_line_cub(char *path)
+// {
+// 	int		fd;
+// 	char	*line;
+// 	int		line_count;
 
-	line_count = 0;
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		error_message(path, strerror(errno));
-	else
-	{
-		line = get_next_line(fd);
-		while (line != NULL)
-		{
-			line_count++;
-			free(line);
-			line = get_next_line(fd);
-		}
-		close(fd);
-	}
-	return (line_count);
-}
+// 	line_count = 0;
+// 	fd = open(path, O_RDONLY);
+// 	if (fd < 0)
+// 		error_message(path, strerror(errno));
+// 	else
+// 	{
+// 		line = get_next_line(fd);
+// 		while (line != NULL)
+// 		{
+// 			line_count++;
+// 			free(line);
+// 			line = get_next_line(fd);
+// 		}
+// 		close(fd);
+// 	}
+// 	return (line_count);
+// }
 
 void	free_tab(void **tab)
 {
@@ -77,18 +77,16 @@ void	fill_tab(int row, int column, int i, t_data *data)
 	data->mapinfo.file[row] = NULL;
 }
 
-void	parse_map(t_data *data, char *av)
+void parse_map(t_data *data, char *av)
 {
-	int		row;
-	int		i;
-	size_t	column;
+	int     row;
+	int     i;
+	size_t  column;
 
 	i = 0;
 	row = 0;
 	column = 0;
-	data->mapinfo.file = ft_calloc(data->mapinfo.line_count \
-			+ 1, sizeof(char *));
-	data->mapinfo.line_count = get_line(av);
+	data->mapinfo.file = make_tab(av, &data->mapinfo.line_count);
 	data->mapinfo.path = av;
 	if (!(data->mapinfo.file))
 	{
@@ -104,3 +102,4 @@ void	parse_map(t_data *data, char *av)
 		close(data->mapinfo.fd);
 	}
 }
+

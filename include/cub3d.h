@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/26 18:35:29 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:57:38 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define ERR_WALL_INVALID "Invalid Walls"
 # define ERR_PLAYER_POS "Invalid player position"
 # define ERR_MALLOC "Error malloc"
+# define ERR_ELEMENT "Error element"
 
 # include <stdlib.h>
 # include <math.h>
@@ -91,8 +92,8 @@ typedef struct s_data
 void	create_images(t_data *data);
 char	*get_next_line(int fd);
 void	free_map(char **map);
-char	**make_tab(char **map, char **argv);
-char	**fill_rows(char **map, char **argv);
+char	**make_tab(char *filepath, int *line_count);
+char	**fill_rows(char **map, char *filepath);
 void	print_img(void *img, int x, int y, t_data *data);
 void	print_map(char **map, t_data *data);
 int		check(char **map);
@@ -116,8 +117,10 @@ void	print_player(void *img, double x, double y, t_data *data);
 void	ray(t_data *data);
 int		error_message(char *detail, char *str);
 int		parse_args(t_data *data, char **av);
-void	parse_map(t_data *data, char *av);
+void 	parse_map(t_data *data, char *av);
 void	free_tab(void **tab);
 void	fill_tab(int row, int column, int i, t_data *data);
+bool	validate_walls(char **map);
+int		validate_player_position(char **file);
 
 #endif

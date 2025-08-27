@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/26 18:05:58 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:48:48 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,16 @@ void	wh(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->map[i])
+	while (data->mapinfo.file[i])
 		i++;
 	data->img.height = i;
 	i = 0;
-	while (data->map[0][i])
+	while (data->mapinfo.file[0][i])
 		i++;
 	data->img.width = i;
 	data->player.width = TILE;
 	data->player.height = TILE;
-	pos((*data).map, data);
+	pos(data->mapinfo.file, data);
 }
 
 void	create_images(t_data *data)

@@ -13,10 +13,11 @@ MAPS_DIR = maps
 CUB3D =	srcs/get_next_line.c srcs/images.c srcs/main.c \
 			srcs/make_char.c srcs/make_map.c srcs/render.c srcs/utils.c \
 			srcs/raycast.c \
-			srcs/parsing/check_map.c \
+			srcs/parsing/check_map_walls.c \
 			srcs/parsing/check.c \
 			srcs/parsing/parse_file.c \
-			srcs/error_message.c
+			srcs/error_message.c \
+			srcs/parsing/check_player_pos.c \
 
 OBJS = $(CUB3D:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

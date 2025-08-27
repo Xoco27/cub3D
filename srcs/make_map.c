@@ -6,49 +6,51 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:48:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/26 18:26:22 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:33:26 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-char	**make_tab(char **map, char **argv)
+char	**make_tab(char *filepath, int *line_count)
 {
 	char	*txt;
 	int		fd;
 	int		i;
+	char	**map;
 
 	i = 0;
-	fd = open(argv[1], O_RDONLY);
+	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
-		return (perror("Error\nError opening file 1."), NULL);
+		return (perror("Error\nError opening file"), NULL);
 	txt = get_next_line(fd);
-	if (txt == NULL)
-		return (NULL);
 	while (txt)
 	{
 		i++;
 		free(txt);
 		txt = get_next_line(fd);
 	}
+	close(fd);
 	if (i == 0)
 		return (perror("Error\nEmpty map file"), NULL);
-	close(fd);
+	*line_count = i;
+	fd = open(filepath, O_RDONLY);
+	if (fd < 0)
+		return (perror("Error\nError reopening file"), NULL);
 	map = malloc(sizeof(char *) * (i + 1));
 	if (!map)
-		return (perror("Error\nEmpty tab"), NULL);
-	map = fill_rows(map, argv);
-	return (map);
+		return (perror("Error\nMalloc failed"), NULL);
+	return (fill_rows(map, filepath));
 }
 
-char	**fill_rows(char **map, char **argv)
+char	**fill_rows(char **map, char *filepath)
 {
 	char	*txt;
 	int		fd;
 	int		i;
 
 	i = 0;
-	fd = open(argv[1], O_RDONLY);
+	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 		error(map);
 	txt = get_next_line(fd);
@@ -69,6 +71,7 @@ char	**fill_rows(char **map, char **argv)
 	close(fd);
 	return (map);
 }
+
 
 void	print_img(void *img, int x, int y, t_data *data)
 {
