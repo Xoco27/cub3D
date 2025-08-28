@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 18:56:45 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:11:25 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ void	ray_cast(t_data *data, int i)
 	double	sin_a;
 	double	cos_a;
 	double	depth;
-	double	step;
 	double	t;
-	int		px;
-	int		py;
+	int		j;
+	int		o;
+	double	proj_height;
 
 	ray_angle = data->player.angle - data->fov / 2 + 0.0001;
 	while (i < data->num_rays)
@@ -108,18 +108,25 @@ void	ray_cast(t_data *data, int i)
 			depth = data->depth_vert;
 		else
 			depth = data->depth_hori;
-		step = 0.01;
 		t = 0;
-		while (t < depth)
+		depth *= cos(data->player.angle - ray_angle);
+		proj_height = data->screen_dist / (depth);
+		j = 0;
+		o = 0;
+		while (t < data->num_rays)
 		{
-			px = (int)((data->player.pos_x + cos_a * t) * TILE);
-			py = (int)((data->player.pos_y + sin_a * t) * TILE);
-			if (px >= 0 && px < data->win_width
-				&& py >= 0 && py < data->win_height)
+			while (j < data->scale)
 			{
-				mlx_pixel_put(data->mlx_ptr, data->win_ptr, px, py, 0xFFFFFF);
+				while (o < proj_height)
+				{
+					mlx_pixel_put(data->mlx_ptr,
+						data->win_ptr, data->scale * i + j,
+						data->win_height / 2 - proj_height / 2 + o, 0xFF0000);
+					o++;
+				}
+				j++;
 			}
-			t += step;
+			t++;
 		}
 		ray_angle += data->delta_angle;
 		i++;

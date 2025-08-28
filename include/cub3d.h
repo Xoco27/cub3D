@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 18:55:11 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 12:09:57 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_data
 	int			win_width;
 	int			win_height;
 	int			move;
+	int			screen_dist;
+	int			scale;
 	double		fov;
 	double		num_rays;
 	double		delta_angle;

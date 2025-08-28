@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 17:41:30 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 12:51:00 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	create_images(t_data *data)
 			"assets/floor.xpm", &data->player.width, &data->player.height);
 	data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/link_down.xpm", &data->player.width, &data->player.height);
-	print_map((*data).map, data);
+	//print_map((*data).map, data);
 }
 
 void	destroy(t_data *data)

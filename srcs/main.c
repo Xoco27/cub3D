@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 18:32:01 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:21:55 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int	on_keypress(int keysym, t_data *data)
 	data->img.map_x = (int)next_x;
 	data->img.map_y = (int)next_y;
 	update_pos(data, next_x, next_y, keysym);
-	print_map(data->map, data);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	//print_map(data->map, data);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	ray_cast(data, i);
 	if (keysym == XK_Escape)
 		on_destroy(data);
