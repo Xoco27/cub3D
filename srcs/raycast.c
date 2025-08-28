@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 13:11:25 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:14:23 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void	ray_vert(t_data *data, double cos_a, double sin_a, int j)
 
 	if (cos_a > 0)
 	{
-		x_vert = data->img.map_x + 1;
+		x_vert = data->map.map_x + 1;
 		dx = 1;
 	}
 	else
 	{
-		x_vert = data->img.map_x - 0.000001;
+		x_vert = data->map.map_x - 0.000001;
 		dx = -1;
 	}
 	data->depth_vert = (x_vert - data->player.pos_x) / cos_a;
@@ -37,10 +37,10 @@ static void	ray_vert(t_data *data, double cos_a, double sin_a, int j)
 	j = 0;
 	while (j < data->max_depth)
 	{
-		if ((int)y_vert < 0 || (int)y_vert >= data->img.height
-			|| (int)x_vert < 0 || (int)x_vert >= data->img.width)
+		if ((int)y_vert < 0 || (int)y_vert >= data->map.height
+			|| (int)x_vert < 0 || (int)x_vert >= data->map.width)
 			break ;
-		if (data->map[(int)y_vert][(int)x_vert] == '1')
+		if (data->tab[(int)y_vert][(int)x_vert] == '1')
 			break ;
 		x_vert += dx;
 		y_vert += dy;
@@ -59,12 +59,12 @@ static void	ray_hori(t_data *data, double cos_a, double sin_a, int j)
 
 	if (sin_a > 0)
 	{
-		y_hori = data->img.map_y + 1;
+		y_hori = data->map.map_y + 1;
 		dy = 1;
 	}
 	else
 	{
-		y_hori = data->img.map_y - 0.000001;
+		y_hori = data->map.map_y - 0.000001;
 		dy = -1;
 	}
 	data->depth_hori = (y_hori - data->player.pos_y) / sin_a;
@@ -74,10 +74,10 @@ static void	ray_hori(t_data *data, double cos_a, double sin_a, int j)
 	j = 0;
 	while (j < data->max_depth)
 	{
-		if ((int)y_hori < 0 || (int)y_hori >= data->img.height
-			|| (int)x_hori < 0 || (int)x_hori >= data->img.width)
+		if ((int)y_hori < 0 || (int)y_hori >= data->map.height
+			|| (int)x_hori < 0 || (int)x_hori >= data->map.width)
 			break ;
-		if (data->map[(int)y_hori][(int)x_hori] == '1')
+		if (data->tab[(int)y_hori][(int)x_hori] == '1')
 			break ;
 		x_hori += dx;
 		y_hori += dy;
@@ -137,10 +137,14 @@ void	rotate(t_data *data, int keysym)
 {
 	if (keysym == XK_Left)
 	{
-		data->player.angle -= 0.1;
+		data->player.angle -= 4 * PI / 180;
+		if (data->player.angle < 0)
+			data->player.angle = 360 * PI / 180;
 	}
 	if (keysym == XK_Right)
 	{
-		data->player.angle += 0.1;
+		data->player.angle += 4 * PI / 180;
+		if (data->player.angle > 360 * PI / 180)
+			data->player.angle = 0;
 	}
 }

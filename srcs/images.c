@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 12:51:00 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:36:11 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,24 @@ void	wh(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->map[i])
+	while (data->tab[i])
 		i++;
-	data->img.height = i;
+	data->map.height = i;
 	i = 0;
-	while (data->map[0][i])
+	while (data->tab[0][i])
 		i++;
-	data->img.width = i;
+	data->map.width = i;
 	data->player.width = TILE;
 	data->player.height = TILE;
-	pos((*data).map, data);
+	pos((*data).tab, data);
 }
 
 void	create_images(t_data *data)
 {
 	wh(data);
-	data->img.wall = mlx_xpm_file_to_image(data->mlx_ptr,
+	data->map.wall = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/wall.xpm", &data->player.width, &data->player.height);
-	data->img.floor = mlx_xpm_file_to_image(data->mlx_ptr,
+	data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/floor.xpm", &data->player.width, &data->player.height);
 	data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/link_down.xpm", &data->player.width, &data->player.height);
@@ -53,6 +53,6 @@ void	create_images(t_data *data)
 
 void	destroy(t_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->img.wall);
+	mlx_destroy_image(data->mlx_ptr, data->map.wall);
 	mlx_destroy_image(data->mlx_ptr, data->player.down);
 }

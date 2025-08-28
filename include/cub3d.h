@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 12:09:57 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:55:12 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #  define BUFFER_SIZE 1000000
 # endif
 # ifndef SPEED
-#  define SPEED 0.05
+#  define SPEED 0.1
 # endif
 # ifndef TILE
 #  define TILE 128
@@ -46,7 +46,7 @@ typedef struct s_map
 	int		map_y;
 	int		width;
 	int		height;
-}		t_map;
+}			t_map;
 
 typedef struct s_player
 {
@@ -56,13 +56,22 @@ typedef struct s_player
 	double	pos_x;
 	double	pos_y;
 	double	angle;
-}		t_player;
+}			t_player;
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}			t_img;
 
 typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	char		**map;
+	char		**tab;
 	char		**copy;
 	int			win_width;
 	int			win_height;
@@ -75,9 +84,10 @@ typedef struct s_data
 	double		max_depth;
 	double		depth_vert;
 	double		depth_hori;
-	t_map		img;
+	t_map		map;
 	t_player	player;
-}			t_data;
+	t_img		img;
+}				t_data;
 
 void	create_images(t_data *data);
 char	*get_next_line(int fd);
@@ -107,5 +117,6 @@ void	print_player(void *img, double x, double y, t_data *data);
 void	ray_cast(t_data *data, int i);
 void	rotate(t_data *data, int keysym);
 void	update_pos(t_data *data, double next_x, double next_y, int keysym);
+void	init_img(t_data *data);
 
 #endif
