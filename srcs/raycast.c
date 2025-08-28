@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 15:14:23 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:11:15 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,21 @@ void	ray_cast(t_data *data, int i)
 			depth = data->depth_vert;
 		else
 			depth = data->depth_hori;
-		t = 0;
 		depth *= cos(data->player.angle - ray_angle);
 		proj_height = data->screen_dist / (depth);
+		j = 0;
+		o = data->win_height / 2;
+		t = 0;
+		// while (j < data->win_width)
+		// {
+		// 	while (o < data->win_height)
+		// 	{
+		// 		mlx_pixel_put(data->mlx_ptr,
+		// 			data->win_ptr, j, o, 0xFFFFFF);
+		// 		o++;
+		// 	}
+		// 	j++;
+		// }
 		j = 0;
 		o = 0;
 		while (t < data->num_rays)
