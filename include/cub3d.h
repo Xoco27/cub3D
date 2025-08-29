@@ -60,7 +60,7 @@ typedef struct s_player
 
 typedef struct s_img
 {
-	void	*mlx_img;
+	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
@@ -84,9 +84,12 @@ typedef struct s_data
 	double		max_depth;
 	double		depth_vert;
 	double		depth_hori;
+	double		y_vert;
+	double		x_hori;
 	t_map		map;
 	t_player	player;
 	t_img		img;
+	t_img		wall;
 }				t_data;
 
 void	create_images(t_data *data);
@@ -117,6 +120,7 @@ void	print_player(void *img, double x, double y, t_data *data);
 void	ray_cast(t_data *data, int i);
 void	rotate(t_data *data, int keysym);
 void	update_pos(t_data *data, double next_x, double next_y, int keysym);
-void	init_img(t_data *data);
+void	init_img(t_data *data, t_img *img, int flag);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 #endif

@@ -42,8 +42,8 @@ void	wh(t_data *data)
 void	create_images(t_data *data)
 {
 	wh(data);
-	data->map.wall = mlx_xpm_file_to_image(data->mlx_ptr,
-			"assets/wall.xpm", &data->player.width, &data->player.height);
+	init_img(data, &data->img, 0);
+	init_img(data, &data->wall, 1);
 	data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/floor.xpm", &data->player.width, &data->player.height);
 	data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,

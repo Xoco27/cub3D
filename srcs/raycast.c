@@ -47,6 +47,7 @@ static void	ray_vert(t_data *data, double cos_a, double sin_a, int j)
 		data->depth_vert += delta_depth;
 		j++;
 	}
+	data->y_vert = y_vert;
 }
 
 static void	ray_hori(t_data *data, double cos_a, double sin_a, int j)
@@ -84,6 +85,7 @@ static void	ray_hori(t_data *data, double cos_a, double sin_a, int j)
 		data->depth_hori += delta_depth;
 		j++;
 	}
+	data->x_hori = x_hori;
 }
 
 void	ray_cast(t_data *data, int i)
@@ -93,9 +95,16 @@ void	ray_cast(t_data *data, int i)
 	double	cos_a;
 	double	depth;
 	double	t;
-	int		j;
-	int		o;
+	// int		j;
+	// int		o;
 	double	proj_height;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
+	char	*pixel;
+	int 	color;
 
 	ray_angle = data->player.angle - data->fov / 2 + 0.0001;
 	while (i < data->num_rays)
@@ -105,41 +114,52 @@ void	ray_cast(t_data *data, int i)
 		ray_vert(data, cos_a, sin_a, i);
 		ray_hori(data, cos_a, sin_a, i);
 		if (data->depth_vert < data->depth_hori)
+		{
 			depth = data->depth_vert;
+			wall_x = fmod(data->y_vert, 1.0);
+		}
 		else
+		{
 			depth = data->depth_hori;
+			wall_x = fmod(data->x_hori, 1.0);
+		}
 		depth *= cos(data->player.angle - ray_angle);
 		proj_height = data->screen_dist / (depth);
-		j = 0;
-		o = data->win_height / 2;
+		tex_x = (int)(wall_x * TILE);
+		step = (double)TILE / proj_height;
+		tex_pos = 0;
 		t = 0;
-		// while (j < data->win_width)
-		// {
-		// 	while (o < data->win_height)
-		// 	{
-		// 		mlx_pixel_put(data->mlx_ptr,
-		// 			data->win_ptr, j, o, 0xFFFFFF);
-		// 		o++;
-		// 	}
-		// 	j++;
-		// }
-		j = 0;
-		o = 0;
-		while (t < data->num_rays)
+		while (t < proj_height)
 		{
-			while (j < data->scale)
-			{
-				while (o < proj_height)
-				{
-					mlx_pixel_put(data->mlx_ptr,
-						data->win_ptr, data->scale * i + j,
-						data->win_height / 2 - proj_height / 2 + o, 0xFF0000);
-					o++;
-				}
-				j++;
-			}
+			tex_y = (int)tex_pos & (TILE - 1);
+			tex_pos += step;
+
+			pixel = data->wall.addr + (tex_y * data->wall.line_len
+					+ tex_x * (data->wall.bpp / 8));
+			color = *(int *)pixel;
+
+			my_mlx_pixel_put(&data->img, data->scale * i,
+				data->win_height / 2 - proj_height / 2 + t, color);
 			t++;
 		}
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+		// j = 0;
+		// o = 0;
+		// while (t < data->num_rays)
+		// {
+		// 	while (j < data->scale)
+		// 	{
+		// 		while (o < proj_height)
+		// 		{
+		// 			mlx_pixel_put(data->mlx_ptr,
+		// 				data->win_ptr, data->scale * i + j,
+		// 				data->win_height / 2 - proj_height / 2 + o, 0xFF0000);
+		// 			o++;
+		// 		}
+		// 		j++;
+		// 	}
+		// 	t++;
+		// }
 		ray_angle += data->delta_angle;
 		i++;
 	}
