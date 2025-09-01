@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 13:36:11 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:25:19 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,15 @@ void	wh(t_data *data)
 void	create_images(t_data *data)
 {
 	wh(data);
-	init_img(data, &data->img, 0);
 	init_img(data, &data->wall, 1);
-	data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
-			"assets/floor.xpm", &data->player.width, &data->player.height);
-	data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
-			"assets/link_down.xpm", &data->player.width, &data->player.height);
+	// data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
+	// 		"assets/floor.xpm", &data->player.width, &data->player.height);
+	// data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
+	// 		"assets/link_down.xpm", &data->player.width, &data->player.height);
 	//print_map((*data).map, data);
 }
 
 void	destroy(t_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->map.wall);
-	mlx_destroy_image(data->mlx_ptr, data->player.down);
+	mlx_destroy_image(data->mlx_ptr, data->wall.img);
 }

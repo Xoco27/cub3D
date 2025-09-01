@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 17:11:15 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:25:18 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ void	ray_cast(t_data *data, int i)
 	double	cos_a;
 	double	depth;
 	double	t;
-	// int		j;
-	// int		o;
 	double	proj_height;
 	double	wall_x;
 	int		tex_x;
@@ -137,32 +135,14 @@ void	ray_cast(t_data *data, int i)
 			pixel = data->wall.addr + (tex_y * data->wall.line_len
 					+ tex_x * (data->wall.bpp / 8));
 			color = *(int *)pixel;
-
 			my_mlx_pixel_put(&data->img, data->scale * i,
 				data->win_height / 2 - proj_height / 2 + t, color);
 			t++;
 		}
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
-		// j = 0;
-		// o = 0;
-		// while (t < data->num_rays)
-		// {
-		// 	while (j < data->scale)
-		// 	{
-		// 		while (o < proj_height)
-		// 		{
-		// 			mlx_pixel_put(data->mlx_ptr,
-		// 				data->win_ptr, data->scale * i + j,
-		// 				data->win_height / 2 - proj_height / 2 + o, 0xFF0000);
-		// 			o++;
-		// 		}
-		// 		j++;
-		// 	}
-		// 	t++;
-		// }
 		ray_angle += data->delta_angle;
 		i++;
 	}
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 }
 
 void	rotate(t_data *data, int keysym)

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 15:55:12 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:12:40 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bpp;
 	int		line_len;
 	int		endian;
@@ -122,5 +124,6 @@ void	rotate(t_data *data, int keysym);
 void	update_pos(t_data *data, double next_x, double next_y, int keysym);
 void	init_img(t_data *data, t_img *img, int flag);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	draw_floor_and_sky(t_data *data);
 
 #endif
