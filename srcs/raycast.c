@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/01 17:25:18 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:59:50 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,11 @@ void	ray_cast(t_data *data, int i)
 		while (t < proj_height)
 		{
 			tex_y = (int)tex_pos & (TILE - 1);
+			if (tex_y > TILE)
+				tex_y = TILE -1;
+			if (tex_y < 0)
+				tex_y = 0;
 			tex_pos += step;
-
 			pixel = data->wall.addr + (tex_y * data->wall.line_len
 					+ tex_x * (data->wall.bpp / 8));
 			color = *(int *)pixel;
@@ -142,20 +145,19 @@ void	ray_cast(t_data *data, int i)
 		ray_angle += data->delta_angle;
 		i++;
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 }
 
 void	rotate(t_data *data, int keysym)
 {
 	if (keysym == XK_Left)
 	{
-		data->player.angle -= 4 * PI / 180;
+		data->player.angle -= 6 * PI / 180;
 		if (data->player.angle < 0)
 			data->player.angle = 360 * PI / 180;
 	}
 	if (keysym == XK_Right)
 	{
-		data->player.angle += 4 * PI / 180;
+		data->player.angle += 6 * PI / 180;
 		if (data->player.angle > 360 * PI / 180)
 			data->player.angle = 0;
 	}

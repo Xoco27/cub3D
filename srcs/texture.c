@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:43:18 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/01 17:38:31 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:40:51 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ void	draw_floor_and_sky(t_data *data)
 		j = 0;
 		while (j < data->win_height / 2)
 		{
-			my_mlx_pixel_put(&data->img, i, j, 0x00A0EE);
+			my_mlx_pixel_put(&data->img, i, j, 0x00A0D0);
 			j++;
 		}
 	}
-	i = 0;
+	i = -1;
 	while (i++ < data->win_width)
 	{
 		j = data->win_height / 2;
 		while (j < data->win_height)
 		{
-			my_mlx_pixel_put(&data->img, i, j, 0xFFFFFF);
+			my_mlx_pixel_put(&data->img, i, j, 0xD0FFD0);
 			j++;
 		}
 	}

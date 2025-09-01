@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/01 17:52:42 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:25:22 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	on_keypress(int keysym, t_data *data)
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw_floor_and_sky(data);
 	ray_cast(data, i);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	if (keysym == XK_Escape)
 		on_destroy(data);

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/01 17:12:40 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:21:45 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #  define BUFFER_SIZE 1000000
 # endif
 # ifndef SPEED
-#  define SPEED 0.1
+#  define SPEED 0.2
 # endif
 # ifndef TILE
 #  define TILE 128
