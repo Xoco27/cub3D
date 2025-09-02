@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 17:35:45 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:01:06 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ typedef struct s_data
 	double		depth_hori;
 	double		y_vert;
 	double		x_hori;
+	double		cos_a;
+	double		sin_a;
 	t_map		map;
 	t_player	player;
 	t_img		img;
@@ -135,5 +137,8 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw_floor_and_sky(t_data *data);
 void	moving(t_data *data, int keysym);
 int		render(t_data *data);
+double	ray_hori_loop(t_data *data, double y_hori, double dy);
+double	ray_vert_loop(t_data *data, double x_vert, double dx);
+void	depth_wall_x(t_data *data, double *depth, double *wall_x, int flag);
 
 #endif
