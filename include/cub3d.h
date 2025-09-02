@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 14:57:32 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:35:45 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_data
 	int			move;
 	int			screen_dist;
 	int			scale;
+	double		index;
+	double		tex_pos;
 	double		fov;
 	double		num_rays;
 	double		delta_angle;
@@ -132,5 +134,6 @@ void	init_img(t_data *data, t_img *img, int flag);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw_floor_and_sky(t_data *data);
 void	moving(t_data *data, int keysym);
+int		render(t_data *data);
 
 #endif

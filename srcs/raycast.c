@@ -6,11 +6,25 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 15:36:01 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:37:29 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	render(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	init_img(data, &data->img, 0);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	draw_floor_and_sky(data);
+	ray_cast(data, i);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+	mlx_destroy_image(data->mlx_ptr, data->img.img);
+	return (0);
+}
 
 static void	ray_vert(t_data *data, double cos_a, double sin_a, int j)
 {
@@ -88,16 +102,29 @@ static void	ray_hori(t_data *data, double cos_a, double sin_a, int j)
 	data->x_hori = x_hori;
 }
 
+void	display_walls(t_data *data, double proj_height, double wall_x, int i)
+{
+	int		tex_y;
+	char	*pixel;
+
+	tex_y = (int)data->tex_pos & (TILE - 1);
+	if (tex_y >= TILE)
+		tex_y = TILE - 1;
+	if (tex_y < 0)
+		tex_y = 0;
+	data->tex_pos += (double)TILE / proj_height;
+	pixel = data->wall.addr + (tex_y * data->wall.line_len
+			+ ((int)(wall_x * TILE)) * (data->wall.bpp / 8));
+	my_mlx_pixel_put(&data->img, data->scale * i,
+		data->win_height / 2 - proj_height / 2 + data->index, *(int *)pixel);
+}
+
 void	ray_cast(t_data *data, int i)
 {
 	double	ray_angle;
 	double	depth;
-	double	t;
 	double	proj_height;
 	double	wall_x;
-	int		tex_y;
-	double	tex_pos;
-	char	*pixel;
 
 	ray_angle = data->player.angle - data->fov / 2 + 0.0001;
 	while (i < data->num_rays)
@@ -116,39 +143,14 @@ void	ray_cast(t_data *data, int i)
 		}
 		depth *= cos(data->player.angle - ray_angle);
 		proj_height = data->screen_dist / (depth);
-		tex_pos = 0;
-		t = 0;
-		while (t < proj_height)
+		data->tex_pos = 0;
+		data->index = 0;
+		while (data->index < proj_height)
 		{
-			tex_y = (int)tex_pos & (TILE - 1);
-			if (tex_y > TILE)
-				tex_y = TILE -1;
-			if (tex_y < 0)
-				tex_y = 0;
-			tex_pos += (double)TILE / proj_height;
-			pixel = data->wall.addr + (tex_y * data->wall.line_len
-					+ ((int)(wall_x * TILE)) * (data->wall.bpp / 8));
-			my_mlx_pixel_put(&data->img, data->scale * i,
-				data->win_height / 2 - proj_height / 2 + t, *(int *)pixel);
-			t++;
+			display_walls(data, proj_height, wall_x, i);
+			data->index++;
 		}
 		ray_angle += data->delta_angle;
 		i++;
-	}
-}
-
-void	rotate(t_data *data, int keysym)
-{
-	if (keysym == XK_Left)
-	{
-		data->player.angle -= 6 * PI / 180;
-		if (data->player.angle < 0)
-			data->player.angle = 360 * PI / 180;
-	}
-	if (keysym == XK_Right)
-	{
-		data->player.angle += 6 * PI / 180;
-		if (data->player.angle > 360 * PI / 180)
-			data->player.angle = 0;
 	}
 }

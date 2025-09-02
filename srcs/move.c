@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 16:29:42 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:13:53 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,22 @@ void	moving(t_data *data, int keysym)
 	}
 	if (keysym == XK_Left || keysym == XK_Right)
 		rotate(data, keysym);
+}
+
+void	rotate(t_data *data, int keysym)
+{
+	if (keysym == XK_Left)
+	{
+		data->player.angle -= 6 * PI / 180;
+		if (data->player.angle < 0)
+			data->player.angle = 360 * PI / 180;
+	}
+	if (keysym == XK_Right)
+	{
+		data->player.angle += 6 * PI / 180;
+		if (data->player.angle > 360 * PI / 180)
+			data->player.angle = 0;
+	}
 }
 
 void	update_pos(t_data *data, int keysym)
