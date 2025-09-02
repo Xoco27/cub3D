@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 16:02:47 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:39:28 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	pos(char **map, t_data *data)
 			{
 				data->player.pos_x = x;
 				data->player.pos_y = y;
+				data->map.map_x = x;
+				data->map.map_y = y;
 				return ;
 			}
 			x++;

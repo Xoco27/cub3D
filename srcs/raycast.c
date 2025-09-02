@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/01 18:59:50 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:57:20 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,26 +91,19 @@ static void	ray_hori(t_data *data, double cos_a, double sin_a, int j)
 void	ray_cast(t_data *data, int i)
 {
 	double	ray_angle;
-	double	sin_a;
-	double	cos_a;
 	double	depth;
 	double	t;
 	double	proj_height;
 	double	wall_x;
-	int		tex_x;
 	int		tex_y;
-	double	step;
 	double	tex_pos;
 	char	*pixel;
-	int 	color;
 
 	ray_angle = data->player.angle - data->fov / 2 + 0.0001;
 	while (i < data->num_rays)
 	{
-		cos_a = cos(ray_angle);
-		sin_a = sin(ray_angle);
-		ray_vert(data, cos_a, sin_a, i);
-		ray_hori(data, cos_a, sin_a, i);
+		ray_vert(data, cos(ray_angle), sin(ray_angle), i);
+		ray_hori(data, cos(ray_angle), sin(ray_angle), i);
 		if (data->depth_vert < data->depth_hori)
 		{
 			depth = data->depth_vert;
@@ -123,8 +116,6 @@ void	ray_cast(t_data *data, int i)
 		}
 		depth *= cos(data->player.angle - ray_angle);
 		proj_height = data->screen_dist / (depth);
-		tex_x = (int)(wall_x * TILE);
-		step = (double)TILE / proj_height;
 		tex_pos = 0;
 		t = 0;
 		while (t < proj_height)
@@ -134,12 +125,11 @@ void	ray_cast(t_data *data, int i)
 				tex_y = TILE -1;
 			if (tex_y < 0)
 				tex_y = 0;
-			tex_pos += step;
+			tex_pos += (double)TILE / proj_height;
 			pixel = data->wall.addr + (tex_y * data->wall.line_len
-					+ tex_x * (data->wall.bpp / 8));
-			color = *(int *)pixel;
+					+ ((int)(wall_x * TILE)) * (data->wall.bpp / 8));
 			my_mlx_pixel_put(&data->img, data->scale * i,
-				data->win_height / 2 - proj_height / 2 + t, color);
+				data->win_height / 2 - proj_height / 2 + t, *(int *)pixel);
 			t++;
 		}
 		ray_angle += data->delta_angle;

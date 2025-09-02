@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:43:18 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/01 18:40:51 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:21:12 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,28 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	}
 }
 
+static int	trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
 void	draw_floor_and_sky(t_data *data)
 {
 	int	i;
 	int	j;
 
-	i = -1;
+	i = 0;
 	while (i++ < data->win_width)
 	{
 		j = 0;
-		while (j < data->win_height / 2)
-		{
-			my_mlx_pixel_put(&data->img, i, j, 0x00A0D0);
-			j++;
-		}
-	}
-	i = -1;
-	while (i++ < data->win_width)
-	{
-		j = data->win_height / 2;
 		while (j < data->win_height)
 		{
-			my_mlx_pixel_put(&data->img, i, j, 0xD0FFD0);
+			if (j < data->win_height / 2)
+				my_mlx_pixel_put(&data->img, i, j, trgb(0, 0, 150, 255));
+			else
+				my_mlx_pixel_put(&data->img, i, j, trgb(0, 80, 80, 80));
 			j++;
 		}
 	}
+	++i;
 }

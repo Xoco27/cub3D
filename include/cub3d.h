@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/01 18:21:45 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:57:32 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ typedef struct s_player
 	double	pos_x;
 	double	pos_y;
 	double	angle;
+	double	dir_x;
+	double	dir_y;
+	double	side_x;
+	double	side_y;
+	double	next_x;
+	double	next_y;
 }			t_player;
 
 typedef struct s_img
@@ -121,9 +127,10 @@ int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
 void	ray_cast(t_data *data, int i);
 void	rotate(t_data *data, int keysym);
-void	update_pos(t_data *data, double next_x, double next_y, int keysym);
+void	update_pos(t_data *data, int keysym);
 void	init_img(t_data *data, t_img *img, int flag);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw_floor_and_sky(t_data *data);
+void	moving(t_data *data, int keysym);
 
 #endif

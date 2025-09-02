@@ -12,7 +12,7 @@ MAPS_DIR = maps
 
 CUB3D =	srcs/check.c srcs/get_next_line.c srcs/images.c srcs/main.c \
 			srcs/make_char.c srcs/make_map.c srcs/render.c srcs/utils.c \
-			srcs/raycast.c srcs/norm.c srcs/texture.c
+			srcs/raycast.c srcs/norm.c srcs/texture.c srcs/move.c
 
 OBJS = $(CUB3D:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
