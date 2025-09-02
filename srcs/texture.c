@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:43:18 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 13:21:12 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:04:43 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	if (x >= 0 && x < img->width && y >= 0 && y < img->height)
 	{
 		pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-		*(unsigned int *)pixel = color;
+		*(int *)pixel = color;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 13:44:23 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:45:00 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,22 @@ int	check_filename(char *filename)
 void	wh(t_data *data)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	data->map.width = 0;
 	while (data->tab[i])
 		i++;
 	data->map.height = i;
-	i = 0;
-	while (data->tab[0][i])
-		i++;
-	data->map.width = i;
+	j = 0;
+	while (data->tab[j])
+	{
+		while (data->tab[j][i])
+			i++;
+		if (i > data->map.width)
+			data->map.width = i;
+		j++;
+	}
 	data->player.width = TILE;
 	data->player.height = TILE;
 	pos((*data).tab, data);

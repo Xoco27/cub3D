@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 14:57:39 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:58:56 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@
 
 void	set_win(t_data *data)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (data->tab[y])
-		y++;
-	x = ft_strlen(data->tab[0]);
-	data->win_height = y * TILE;
-	data->win_width = x * TILE;
+	data->win_height = 800;
+	data->win_width = 1220;
 }
 
 int	on_destroy(t_data *data)
