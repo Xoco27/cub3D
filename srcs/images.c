@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/03 14:35:28 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:45:49 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,12 @@ void	wh(t_data *data)
 void	create_images(t_data *data)
 {
 	wh(data);
-	init_img(data, &data->wall, 1);
-	init_img(data, &data->img, 0);
+	data->assets = malloc(sizeof(char *) * 5);
+	data->assets[0] = "assets/wall.xpm";
+	data->assets[1] = "assets/floor.xpm";
+	data->assets[1] = "assets/floor.xpm";
+	data->assets[2] = "floor.xpm";
+	init_img(data, &data->img);
 	// data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
 	// 		"assets/floor.xpm", &data->player.width, &data->player.height);
 	// data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,

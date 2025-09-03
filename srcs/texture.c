@@ -6,29 +6,33 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:43:18 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/03 13:42:58 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:41:58 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	init_img(t_data *data, t_img *img, int flag)
+void	init_img(t_data *data, t_img *img)
 {
-	if (flag == 0)
+	int	i;
+
+	i = 0;
+	while (i < 5)
 	{
-		img->img = mlx_new_image(data->mlx_ptr,
-				data->win_width, data->win_height);
-		img->addr = mlx_get_data_addr(img->img,
-				&img->bpp, &img->line_len, &img->endian);
-		img->height = data->win_height;
-		img->width = data->win_width;
-	}
-	else if (flag == 1)
-	{
-		data->wall.img = mlx_xpm_file_to_image(data->mlx_ptr,
-				"assets/wall.xpm", &data->player.width, &data->player.height);
-		data->wall.addr = mlx_get_data_addr(img->img,
-				&img->bpp, &img->line_len, &img->endian);
+		if (i == 0)
+		{
+			img[i].img = mlx_new_image(data->mlx_ptr,
+					data->win_width, data->win_height);
+		}
+		else
+		{
+			img[i].img = mlx_xpm_file_to_image(data->mlx_ptr,
+					data->assets[i], &data->player.width, &data->player.height);
+		}
+		img[i].addr = mlx_get_data_addr(img[i].img,
+				&img[i].bpp, &img[i].line_len, &img[i].endian);
+		img[i].height = data->win_height;
+		img[i].width = data->win_width;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/03 13:31:23 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:41:09 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_data
 	void		*win_ptr;
 	char		**tab;
 	char		**copy;
+	char		**assets;
 	int			win_width;
 	int			win_height;
 	int			move;
@@ -100,8 +101,7 @@ typedef struct s_data
 	double		tex_pos;
 	t_map		map;
 	t_player	player;
-	t_img		img;
-	t_img		wall;
+	t_img		img[5];
 }				t_data;
 
 void	create_images(t_data *data);
@@ -132,7 +132,7 @@ void	print_player(void *img, double x, double y, t_data *data);
 void	ray_cast(t_data *data, int i);
 void	rotate(t_data *data, int keysym);
 void	update_pos(t_data *data, int keysym);
-void	init_img(t_data *data, t_img *img, int flag);
+void	init_img(t_data *data, t_img *img);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	draw_floor_and_sky(t_data *data);
 void	moving(t_data *data, int keysym);
