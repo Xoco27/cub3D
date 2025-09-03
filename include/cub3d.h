@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 18:01:06 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/03 13:31:23 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ typedef struct s_data
 	int			move;
 	int			screen_dist;
 	int			scale;
-	double		index;
-	double		tex_pos;
 	double		fov;
 	double		num_rays;
 	double		delta_angle;
@@ -98,6 +96,8 @@ typedef struct s_data
 	double		x_hori;
 	double		cos_a;
 	double		sin_a;
+	double		index;
+	double		tex_pos;
 	t_map		map;
 	t_player	player;
 	t_img		img;

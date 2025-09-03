@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 18:03:33 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:35:12 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ int	render(t_data *data)
 	int	i;
 
 	i = 0;
-	init_img(data, &data->img, 0);
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw_floor_and_sky(data);
 	ray_cast(data, i);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
-	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	return (0);
 }
 
