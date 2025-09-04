@@ -1,7 +1,7 @@
-NO textures/test/north.xpm
-SO textures/test/south.xpm
-WE textures/test/west.xpm
-EA textures/test/east.xpm
+NO assets/wall.xpm
+SO assets/floor.xpm
+WE assets/door_opened.xpm
+EA assets/cheese_maze.xpm
 
 F 20,20
 C 200,200,200

@@ -6,13 +6,13 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:35:25 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 14:57:56 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/28 12:54:03 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-char	*ft_free(char *txt, char *buffer)
+static char	*ft_free(char *txt, char *buffer)
 {
 	char	*temp;
 

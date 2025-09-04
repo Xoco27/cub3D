@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 16:45:38 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:23:07 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	set_win(t_data *data)
 	int	y;
 
 	y = 0;
-	while (data->mapinfo.file[y])
+	while (data->map[y])
 		y++;
-	x = ft_strlen(data->mapinfo.file[0]);
+	x = ft_strlen(data->map[0]);
 	data->win_height = y * TILE;
 	data->win_width = x * TILE;
 }
@@ -31,7 +31,7 @@ int	on_destroy(t_data *data)
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
-	free_map(data->mapinfo.file);
+	free_map(data->map);
 	exit(0);
 	return (0);
 }
@@ -64,11 +64,11 @@ int	on_keypress(int keysym, t_data *data)
 	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
 		&& data->img.map_y >= 0 && data->img.map_y < data->img.height
 		&& data->img.map_x >= 0 && data->img.map_x < data->img.width
-		&& data->mapinfo.file[data->img.map_y][data->img.map_x] != '1')
+		&& data->map[data->img.map_y][data->img.map_x] != '1')
 	{
 		data->player.pos_x = next_x;
 		data->player.pos_y = next_y;
-		print_map(data->mapinfo.file, data);
+		print_map(data->map, data);
 		print_player(data->player.down, data->player.pos_x,
 			data->player.pos_y, data);
 	}
@@ -93,8 +93,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (perror("Error\nNot enough or too much arguments."), 1);
 	parse_args(&data, argv);
+	verify_file_data(&data, data.mapinfo.file);
 	data.move = 0;
-	if (data.mapinfo.file == NULL)
+	if (data.map == NULL)
 		return (perror("Error\nEmpty map"), 1);
 	set_win(&data);
 	if (initiate(&data) == 1)

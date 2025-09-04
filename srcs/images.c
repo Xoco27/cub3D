@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 15:48:48 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:04:22 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,16 @@ void	wh(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->mapinfo.file[i])
+	while (data->map[i])
 		i++;
 	data->img.height = i;
 	i = 0;
-	while (data->mapinfo.file[0][i])
+	while (data->map[0][i])
 		i++;
 	data->img.width = i;
 	data->player.width = TILE;
 	data->player.height = TILE;
-	pos(data->mapinfo.file, data);
+	pos(data->map, data);
 }
 
 void	create_images(t_data *data)
@@ -95,7 +95,7 @@ void	create_images(t_data *data)
 			"assets/floor.xpm", &data->img.width, &data->img.height);
 	data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/link_down.xpm", &data->img.width, &data->img.height);
-	print_map((*data).map, data);
+	print_map(data->map, data);
 	print_player(data->player.down, data->player.pos_x,
 		data->player.pos_y, data);
 }

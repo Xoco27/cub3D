@@ -1,7 +1,7 @@
-NO textures/simonkraft/wet_sponge.xpm
-SO textures/simonkraft/wet_sponge.xpm
-WE textures/simonkraft/wet_sponge.xpm
-EA textures/simonkraft/wet_sponge.xpm
+NO assets/wall.xpm
+SO assets/floor.xpm
+WE assets/door_opened.xpm
+EA assets/cheese_maze.xpm
 
 F 164,169,20
 C 153,204,255
@@ -25,6 +25,5 @@ C 153,204,255
 101011111111111010101
 100010000000000010001
 101010111011111111101
-1010000W1000000000001
+1010000P1000000000001
 111111111111111111111
-

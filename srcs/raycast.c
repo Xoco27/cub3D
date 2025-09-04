@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 15:41:49 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:01:17 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ray(t_data *data)
 	data->img.map_y += data->player.vector_y;
 	while (data->img.map_y >= 0 && data->img.map_y < data->img.height
 		&& data->img.map_x >= 0 && data->img.map_x < data->img.width
-		&& data->mapinfo.file[data->img.map_y][data->img.map_x] != '1')
+		&& data->map[data->img.map_y][data->img.map_x] != '1')
 	{
 		// while (x < TILE * data->player.pos_x && y < TILE * data->player.pos_y)
 		// {

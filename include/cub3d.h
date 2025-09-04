@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 17:29:01 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:19:06 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # define ERR_PLAYER_POS "Invalid player position"
 # define ERR_MALLOC "Error malloc"
 # define ERR_ELEMENT "Error element"
+# define ERR_FILE "Error file"
+# define ERR_TEXTURE_INVALID "Error invalid texture"
+# define ERR_INVALID_MAP "Error Invalid map"
 
 # include <stdlib.h>
 # include <math.h>
@@ -43,6 +46,23 @@
 # include <X11/keysym.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+
+typedef struct s_color
+{
+	int	floor[3];
+	int	ceiling[3];
+	int	has_floor;
+	int	has_ceiling;
+}	t_color;
+
+typedef struct s_texture
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	t_color	color;
+}	t_texture;
 
 typedef struct s_mapinfo
 {
@@ -76,6 +96,7 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_mapinfo	mapinfo;
+	t_texture	texture;
 	char		**map;
 	char		**copy;
 	int			win_width;
@@ -117,11 +138,15 @@ void	print_player(void *img, double x, double y, t_data *data);
 void	ray(t_data *data);
 int		error_message(char *detail, char *str);
 int		parse_args(t_data *data, char **av);
-void 	parse_map(t_data *data, char *av);
+void	parse_map(t_data *data, char *av);
 void	free_tab(void **tab);
 void	fill_tab(int row, int column, int i, t_data *data);
 bool	validate_walls(char **map);
 int		validate_player_position(char **file);
 int		validate_elements(char **file);
+int		verify_file_data(t_data *data, char **map);
+int		fill_color_textures(t_texture *tex, char *line, int j);
+int		create_map(t_data *data, char **file);
+bool	is_map_line(char *line);
 
 #endif

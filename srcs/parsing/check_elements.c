@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/27 18:09:56 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/08/28 11:37:55 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	is_texture_line(char *line)
 static int	is_color_line(char *line)
 {
 	return (
-		ft_strncmp(line, "F ", 2) == 0 ||
-		ft_strncmp(line, "C ", 2) == 0
+		ft_strncmp(line, "F ", 2) == 0
+		|| ft_strncmp(line, "C ", 2) == 0
 	);
 }
 
@@ -36,6 +36,8 @@ static int	is_map_line(char *line)
 
 	while (line[i])
 	{
+		if (*line == 'F' || *line == 'C')
+			return (0);
 		if (line[i] == '1')
 			return (1);
 		i++;
@@ -60,13 +62,12 @@ int	validate_elements(char **file)
 			textures++;
 		else if (is_color_line(file[i]))
 			colors++;
-		else if (file[i][0] == '\0')
+		else if (file[i][0] == '\0' || file[i][0] == '\n')
 			;
 		else
 			return (false);
 		i++;
 	}
-	printf("%d, %d\n", colors, textures);
 	if (textures != 4 || colors != 2)
 		return (false);
 	if (!file[i] || !is_map_line(file[i]))
