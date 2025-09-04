@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:38:56 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/28 13:23:06 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:49:00 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ static bool	is_line_closed(char *line)
 	if (line[i - 1] != '1')
 		return (false);
 	return (true);
-}
 
-static bool	is_map_line(char *line)
+bool	is_map_line(char *line)
 {
 	while (*line)
 	{
