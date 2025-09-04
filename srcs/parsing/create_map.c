@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:23:48 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/28 15:28:28 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:37:50 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,23 @@ int	create_map(t_data *data, char **map)
 	height = map_height(map, i);
 	if (height == 0)
 		return (1);
-	data->map = malloc(sizeof(char *) * (height + 1));
-	if (!data->map)
+	data->tab = malloc(sizeof(char *) * (height + 1));
+	if (!data->tab)
 		return (1);
 	k = 0;
 	while (map[i] && is_map_line(map[i]))
 	{
-		data->map[k] = strdup(map[i]);
-		if (!data->map[k])
+		data->tab[k] = ft_strdup(map[i]);
+		if (!data->tab[k])
 		{
 			while (k > 0)
-				free(data->map[--k]);
-			free(data->map);
+				free(data->tab[--k]);
+			free(data->tab);
 			return (1);
 		}
 		k++;
 		i++;
 	}
-	data->map[k] = NULL;
+	data->tab[k] = NULL;
 	return (0);
 }

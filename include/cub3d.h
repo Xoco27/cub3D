@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/04 15:13:00 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:25:19 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ typedef struct s_data
 	char		**tab;
 	t_mapinfo	mapinfo;
 	t_texture	texture;
-	char		**map;
 	char		**copy;
 	char		**assets;
 	int			win_width;

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/04 15:16:11 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:23:44 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	wh(t_data *data)
 	}
 	data->player.width = TILE;
 	data->player.height = TILE;
-	pos(data->map, data);
+	pos(data->tab, data);
 }
 
 void	create_images(t_data *data)
@@ -99,7 +99,7 @@ void	create_images(t_data *data)
 	data->assets = malloc(sizeof(char *) * 5);
 	data->assets[0] = ft_strdup("assets/wall.xpm");
 	data->assets[1] = ft_strdup("assets/floor.xpm");
-	data->assets[2] = ft_strdup("assets/door_closed.xpm");
+	data->assets[2] = ft_strdup("assets/link_down.xpm");
 	data->assets[3] = ft_strdup("assets/door_opened.xpm");
 	init_img(data, data->img);
 	// data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,

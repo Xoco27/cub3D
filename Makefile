@@ -23,6 +23,8 @@ CUB3D =	srcs/get_next_line.c srcs/images.c srcs/main.c \
 			srcs/parsing/verify_file_data.c \
 			srcs/parsing/verify_colors.c \
 			srcs/parsing/create_map.c \
+			srcs/move.c srcs/norm.c \
+			srcs/texture.c
 
 OBJS = $(CUB3D:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
