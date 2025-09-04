@@ -3,22 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   images.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/01 15:22:38 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:04:22 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	check_filename(char *filename)
-{
-	int	len;
 
-	len = strlen(filename);
-	if (len < 4 || ft_strncmp(filename + len - 4, ".cub", len) != 0)
-		return (1);
+static bool	is_dir(char *arg)
+{
+	int		fd;
+	bool	ret;
+
+	ret = false;
+	fd = open(arg, O_DIRECTORY);
+	if (fd >= 0)
+	{
+		close (fd);
+		ret = true;
+	}
+	return (ret);
+}
+
+static bool	is_cub_file(char *arg)
+{
+	size_t	len;
+
+	len = ft_strlen(arg);
+	if ((arg[len - 3] != 'c' || arg[len - 2] != 'u'
+			|| arg[len - 1] != 'b'
+			|| arg[len - 4] != '.'))
+		return (false);
+	return (true);
+}
+
+static bool	is_xpm_file(char *arg)
+{
+	size_t	len;
+
+	len = ft_strlen(arg);
+	if ((arg[len - 3] != 'x' || arg[len - 2] != 'p'
+			|| arg[len - 1] != 'm'
+			|| arg[len - 4] != '.'))
+		return (false);
+	return (true);
+}
+
+int	check_filename(char *arg, bool cub)
+{
+	int	fd;
+
+	if (is_dir(arg))
+		return (error_message(arg, "tg"));
+	fd = open(arg, O_RDONLY);
+	if (fd == -1)
+		return (error_message(arg, strerror(errno)));
+	close(fd);
+	if (cub && !is_cub_file(arg))
+		return (error_message(arg, "tg"));
+	if (!cub && !is_xpm_file(arg))
+		return (error_message(arg, "tg"));
 	return (0);
 }
 
@@ -36,7 +83,7 @@ void	wh(t_data *data)
 	data->img.width = i;
 	data->player.width = TILE;
 	data->player.height = TILE;
-	pos((*data).map, data);
+	pos(data->map, data);
 }
 
 void	create_images(t_data *data)
@@ -48,7 +95,7 @@ void	create_images(t_data *data)
 			"assets/floor.xpm", &data->img.width, &data->img.height);
 	data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/link_down.xpm", &data->img.width, &data->img.height);
-	print_map((*data).map, data);
+	print_map(data->map, data);
 	print_player(data->player.down, data->player.pos_x,
 		data->player.pos_y, data);
 }

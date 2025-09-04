@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/07/03 15:41:37 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:52:45 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,18 @@
 # ifndef PI
 #  define PI 3.141592653589793
 # endif
+# define ERR_MAP_MISSING "Missing map"
+# define ERR_WALL_INVALID "Invalid Walls"
+# define ERR_PLAYER_POS "Invalid player position"
+# define ERR_MALLOC "Error malloc"
+# define ERR_ELEMENT "Error element"
+# define ERR_FILE "Error file"
+# define ERR_TEXTURE_INVALID "Error invalid texture"
+# define ERR_INVALID_MAP "Error Invalid map"
 
 # include <stdlib.h>
 # include <math.h>
+# include <errno.h>
 # include <unistd.h>
 # include <string.h>
 # include <ctype.h>
@@ -38,15 +47,37 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
-typedef struct s_map
+typedef struct s_color
 {
+	int	floor[3];
+	int	ceiling[3];
+	int	has_floor;
+	int	has_ceiling;
+}	t_color;
+
+typedef struct s_texture
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	t_color	color;
+}	t_texture;
+
+typedef struct s_mapinfo
+{
+	int		fd;
+	int		line_count;
+	char	*path;
+	char	**file;
 	void	*floor;
 	void	*wall;
 	int		map_x;
 	int		map_y;
 	int		width;
 	int		height;
-}		t_map;
+	int		index_end_of_map;
+}		t_mapinfo;
 
 typedef struct s_player
 {
@@ -64,6 +95,8 @@ typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	t_mapinfo	mapinfo;
+	t_texture	texture;
 	char		**map;
 	char		**copy;
 	int			win_width;
@@ -72,15 +105,16 @@ typedef struct s_data
 	int			total;
 	int			move;
 	int			r;
-	t_map		img;
+	char		**clone;
+	t_mapinfo	img;
 	t_player	player;
 }			t_data;
 
 void	create_images(t_data *data);
 char	*get_next_line(int fd);
 void	free_map(char **map);
-char	**make_tab(char **map, char **argv);
-char	**fill_rows(char **map, char **argv);
+char	**make_tab(char *filepath, int *line_count);
+char	**fill_rows(char **map, char *filepath);
 void	print_img(void *img, int x, int y, t_data *data);
 void	print_map(char **map, t_data *data);
 int		check(char **map);
@@ -98,9 +132,21 @@ void	ft_exit(t_data *data);
 int		is_map_valid(t_data *data);
 int		another_check(t_data *data);
 int		non_valid(char **map);
-int		check_filename(char *filename);
+int		check_filename(char *arg, bool cub);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
 void	ray(t_data *data);
+int		error_message(char *detail, char *str);
+int		parse_args(t_data *data, char **av);
+void	parse_map(t_data *data, char *av);
+void	free_tab(void **tab);
+void	fill_tab(int row, int column, int i, t_data *data);
+bool	validate_walls(char **map);
+int		validate_player_position(char **file);
+int		validate_elements(char **file);
+int		verify_file_data(t_data *data, char **map);
+int		fill_color_textures(t_texture *tex, char *line, int j);
+int		create_map(t_data *data, char **file);
+bool	is_map_line(char *line);
 
 #endif
