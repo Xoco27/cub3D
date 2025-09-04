@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/04 13:27:56 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:03:28 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,19 @@ static void	ray_hori(t_data *data, double cos_a, double sin_a)
 static void	display_walls(t_data *data,
 	double proj_height, double wall_x, int i)
 {
+	int		tex_x;
 	int		tex_y;
 	char	*pixel;
 
-	tex_y = (int)data->tex_pos & (TILE - 1);
-	if (tex_y >= TILE)
-		tex_y = TILE - 1;
-	if (tex_y < 0)
-		tex_y = 0;
+	tex_x = (int)(wall_x * TILE);
+	tex_y = (int)data->tex_pos;
 	data->tex_pos += (double)TILE / proj_height;
-	pixel = data->tex.addr + (tex_y * data->img[1].line_len
-			+ ((int)(wall_x * TILE)) * (data->img[1].bpp / 8));
-	my_mlx_pixel_put(&data->img[0], data->scale * i,
-		data->win_height / 2 - proj_height / 2 + data->index, *(int *)pixel);
+	pixel = data->tex.addr + (tex_y * data->tex.line_len
+			+ tex_x * (data->tex.bpp / 8));
+	if ((*(int *)pixel) != 0x00000000)
+		my_mlx_pixel_put(&data->img[0], data->scale * i,
+			data->win_height / 2 - proj_height / 2 + data->index,
+			*(int *)pixel);
 }
 
 void	ray_cast(t_data *data, int i)
@@ -102,7 +102,7 @@ void	ray_cast(t_data *data, int i)
 		proj_height = data->screen_dist / (depth);
 		data->tex_pos = 0;
 		data->index = 0;
-		while (data->index < proj_height)
+		while (proj_height > 0 && data->index < proj_height)
 		{
 			display_walls(data, proj_height, wall_x, i);
 			data->index++;
