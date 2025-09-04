@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 16:27:39 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:16:58 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	pos(char **map, t_data *data)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'P')
+			if (map[y][x] == 'P' /*|| map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W'*/)
 			{
 				data->player.pos_x = x + 0.5;
 				data->player.pos_y = y + 0.5;

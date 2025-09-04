@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/04 14:11:29 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:16:42 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,16 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (perror("Error\nNot enough or too much arguments."), 1);
-	if (check_filename(argv[1]) == 1)
-		return (perror("Error\nWrong file extension"), 1);
+	parse_args(&data, argv);
+	verify_file_data(&data, data.mapinfo.file);
 	data.move = 0;
 	data.tab = make_tab(data.tab, argv);
 	if (data.tab == NULL)
 		return (perror("Error\nEmpty map"), 1);
 	if (!data.tab)
 		return (perror("Error\nMap making failed."), 1);
+	if (data.map == NULL)
+		return (perror("Error\nEmpty map"), 1);
 	set_win(&data);
 	if (initiate(&data) == 1)
 		return (perror("Error\nFailed to initiate data or window"), 1);
