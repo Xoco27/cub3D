@@ -6,24 +6,11 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:48:40 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/04 14:52:17 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:55:54 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-static bool	is_map_line(char *line)
-{
-	while (*line)
-	{
-		if (*line == 'F' || *line == 'C')
-			return (false);
-		else if (*line == '1')
-			return (true);
-		line++;
-	}
-	return (false);
-}
 
 int	validate_player_position(char **file)
 {

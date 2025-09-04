@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/28 11:37:55 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:56:22 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	is_color_line(char *line)
 	);
 }
 
-static int	is_map_line(char *line)
+static int	is_map_liner(char *line)
 {
 	int	i = 0;
 
@@ -56,7 +56,7 @@ int	validate_elements(char **file)
 	colors = 0;
 	while (file[i])
 	{
-		if (is_map_line(file[i]))
+		if (is_map_liner(file[i]))
 			break ;
 		if (is_texture_line(file[i]))
 			textures++;
@@ -70,7 +70,7 @@ int	validate_elements(char **file)
 	}
 	if (textures != 4 || colors != 2)
 		return (false);
-	if (!file[i] || !is_map_line(file[i]))
+	if (!file[i] || !is_map_liner(file[i]))
 		return (false);
 	return (true);
 }
