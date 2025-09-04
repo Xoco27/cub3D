@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/04 14:56:22 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:54:23 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static int	is_texture_line(char *line)
 {
 	return (
-		ft_strncmp(line, "NO ", 3) == 0 ||
-		ft_strncmp(line, "SO ", 3) == 0 ||
-		ft_strncmp(line, "WE ", 3) == 0 ||
-		ft_strncmp(line, "EA ", 3) == 0
+		ft_strncmp(line, "NO ", 3) == 0
+		|| ft_strncmp(line, "SO ", 3) == 0
+		|| ft_strncmp(line, "WE ", 3) == 0
+		|| ft_strncmp(line, "EA ", 3) == 0
 	);
 }
 
@@ -32,8 +32,9 @@ static int	is_color_line(char *line)
 
 static int	is_map_liner(char *line)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (line[i])
 	{
 		if (*line == 'F' || *line == 'C')

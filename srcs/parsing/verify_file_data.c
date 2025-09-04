@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:40:57 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/28 15:36:54 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:31:28 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	get_into_file(t_data *data, char **map, int i, int j)
 int	verify_file_data(t_data *data, char **map)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (map[i])

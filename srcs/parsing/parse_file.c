@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:33:53 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/27 17:29:51 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:31:15 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	fill_tab(int row, int column, int i, t_data *data)
 	data->mapinfo.file[row] = NULL;
 }
 
-void parse_map(t_data *data, char *av)
+void	parse_map(t_data *data, char *av)
 {
-	int     row;
-	int     i;
-	size_t  column;
+	int		row;
+	int		i;
+	size_t	column;
 
 	i = 0;
 	row = 0;
