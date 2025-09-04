@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/03 14:45:49 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 13:11:35 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	create_images(t_data *data)
 {
 	wh(data);
 	data->assets = malloc(sizeof(char *) * 5);
-	data->assets[0] = "assets/wall.xpm";
-	data->assets[1] = "assets/floor.xpm";
-	data->assets[1] = "assets/floor.xpm";
-	data->assets[2] = "floor.xpm";
-	init_img(data, &data->img);
+	data->assets[0] = ft_strdup("assets/wall.xpm");
+	data->assets[1] = ft_strdup("assets/floor.xpm");
+	data->assets[2] = ft_strdup("assets/door_closed.xpm");
+	data->assets[3] = ft_strdup("assets/door_opened.xpm");
+	init_img(data, data->img);
 	// data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
 	// 		"assets/floor.xpm", &data->player.width, &data->player.height);
 	// data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
@@ -64,6 +64,15 @@ void	create_images(t_data *data)
 
 void	destroy(t_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->wall.img);
-	mlx_destroy_image(data->mlx_ptr, data->img.img);
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (i != 4)
+			free(data->assets[i]);
+		mlx_destroy_image(data->mlx_ptr, data->img[i].img);
+		i++;
+	}
+	free(data->assets);
 }

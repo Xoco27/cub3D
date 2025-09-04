@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:26:38 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/02 18:02:41 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 13:27:37 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,19 @@ void	depth_wall_x(t_data *data, double *depth, double *wall_x, int flag)
 	{
 		*depth = data->depth_vert;
 		*wall_x = fmod(data->y_vert, 1.0);
+		if (data->cos_a > 0)
+			data->tex = data->img[1];
+		else
+			data->tex = data->img[2];
 	}
 	else
 	{
 		*depth = data->depth_hori;
 		*wall_x = fmod(data->x_hori, 1.0);
+		if (data->sin_a > 0)
+			data->tex = data->img[3];
+		else
+			data->tex = data->img[4];
 	}
 }
 

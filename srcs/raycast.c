@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/03 14:35:12 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 13:27:56 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	render(t_data *data)
 	i = 0;
 	draw_floor_and_sky(data);
 	ray_cast(data, i);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img[0].img, 0, 0);
 	return (0);
 }
 
@@ -75,9 +76,9 @@ static void	display_walls(t_data *data,
 	if (tex_y < 0)
 		tex_y = 0;
 	data->tex_pos += (double)TILE / proj_height;
-	pixel = data->wall.addr + (tex_y * data->wall.line_len
-			+ ((int)(wall_x * TILE)) * (data->wall.bpp / 8));
-	my_mlx_pixel_put(&data->img, data->scale * i,
+	pixel = data->tex.addr + (tex_y * data->img[1].line_len
+			+ ((int)(wall_x * TILE)) * (data->img[1].bpp / 8));
+	my_mlx_pixel_put(&data->img[0], data->scale * i,
 		data->win_height / 2 - proj_height / 2 + data->index, *(int *)pixel);
 }
 

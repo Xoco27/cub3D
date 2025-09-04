@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:43:18 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/03 14:41:58 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 13:09:13 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@ void	init_img(t_data *data, t_img *img)
 		{
 			img[i].img = mlx_new_image(data->mlx_ptr,
 					data->win_width, data->win_height);
+			img[i].height = data->win_height;
+			img[i].width = data->win_width;
 		}
 		else
 		{
 			img[i].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->assets[i], &data->player.width, &data->player.height);
+					data->assets[i - 1], &data->player.width,
+					&data->player.height);
 		}
 		img[i].addr = mlx_get_data_addr(img[i].img,
 				&img[i].bpp, &img[i].line_len, &img[i].endian);
-		img[i].height = data->win_height;
-		img[i].width = data->win_width;
+		i++;
 	}
 }
 
@@ -64,9 +66,9 @@ void	draw_floor_and_sky(t_data *data)
 		while (j < data->win_height)
 		{
 			if (j < data->win_height / 2)
-				my_mlx_pixel_put(&data->img, i, j, trgb(0, 0, 150, 255));
+				my_mlx_pixel_put(&data->img[0], i, j, trgb(0, 0, 150, 255));
 			else
-				my_mlx_pixel_put(&data->img, i, j, trgb(0, 80, 80, 80));
+				my_mlx_pixel_put(&data->img[0], i, j, trgb(0, 80, 80, 80));
 			j++;
 		}
 	}

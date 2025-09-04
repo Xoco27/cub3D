@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/03 14:41:09 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/04 13:27:09 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_data
 	t_map		map;
 	t_player	player;
 	t_img		img[5];
+	t_img		tex;
 }				t_data;
 
 void	create_images(t_data *data);
