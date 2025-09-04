@@ -6,13 +6,13 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:48:40 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/28 14:17:04 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:52:17 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-bool	is_map_line(char *line)
+static bool	is_map_line(char *line)
 {
 	while (*line)
 	{
