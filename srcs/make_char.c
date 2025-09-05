@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   make_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/27 17:12:31 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:16:58 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static	void	init_data(t_data *data)
+{
+	data->player.angle = 0;
+	data->fov = PI / 3;
+	data->num_rays = data->win_width / 2;
+	data->delta_angle = data->fov / data->num_rays;
+	data->max_depth = data->win_width;
+	data->screen_dist = (data->win_width) / 2 / tan(data->fov / 2);
+	data->scale = data->win_width / data->num_rays;
+}
 
 void	pos(char **map, t_data *data)
 {
@@ -26,14 +37,15 @@ void	pos(char **map, t_data *data)
 			if (map[y][x] == 'P' /*|| map[y][x] == 'S'
 				|| map[y][x] == 'E' || map[y][x] == 'W'*/)
 			{
-				data->player.pos_x = x;
-				data->player.pos_y = y;
+				data->player.pos_x = x + 0.5;
+				data->player.pos_y = y + 0.5;
+				data->map.map_x = x;
+				data->map.map_y = y;
 				return ;
 			}
 			x++;
 		}
 		y++;
-		data->player.vector_x = 0;
-		data->player.vector_y = 1;
+		init_data(data);
 	}
 }

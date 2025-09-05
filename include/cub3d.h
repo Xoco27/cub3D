@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/04 14:52:45 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:25:19 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #  define BUFFER_SIZE 1000000
 # endif
 # ifndef SPEED
-#  define SPEED 0.05
+#  define SPEED 0.2
 # endif
 # ifndef TILE
 #  define TILE 128
@@ -82,33 +82,63 @@ typedef struct s_mapinfo
 typedef struct s_player
 {
 	void	*down;
-	double	width;
-	double	height;
+	int		width;
+	int		height;
 	double	pos_x;
 	double	pos_y;
-	double	vector_x;
-	double	vector_y;
-	double	rotation_angle;
-}		t_player;
+	double	angle;
+	double	dir_x;
+	double	dir_y;
+	double	side_x;
+	double	side_y;
+	double	next_x;
+	double	next_y;
+}			t_player;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}			t_img;
 
 typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	char		**tab;
 	t_mapinfo	mapinfo;
 	t_texture	texture;
-	char		**map;
 	char		**copy;
+	char		**assets;
 	int			win_width;
 	int			win_height;
-	int			score;
-	int			total;
 	int			move;
+	int			screen_dist;
+	int			scale;
+	double		fov;
+	double		num_rays;
+	double		delta_angle;
+	double		max_depth;
+	double		depth_vert;
+	double		depth_hori;
+	double		y_vert;
+	double		x_hori;
+	double		cos_a;
+	double		sin_a;
+	double		index;
+	double		tex_pos;
 	int			r;
 	char		**clone;
-	t_mapinfo	img;
+	t_mapinfo	map;
 	t_player	player;
-}			t_data;
+	t_img		img[5];
+	t_img		tex;
+}				t_data;
 
 void	create_images(t_data *data);
 char	*get_next_line(int fd);
@@ -135,7 +165,17 @@ int		non_valid(char **map);
 int		check_filename(char *arg, bool cub);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
-void	ray(t_data *data);
+void	ray_cast(t_data *data, int i);
+void	rotate(t_data *data, int keysym);
+void	update_pos(t_data *data, int keysym);
+void	init_img(t_data *data, t_img *img);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	draw_floor_and_sky(t_data *data);
+void	moving(t_data *data, int keysym);
+int		render(t_data *data);
+double	ray_hori_loop(t_data *data, double y_hori, double dy);
+double	ray_vert_loop(t_data *data, double x_vert, double dx);
+void	depth_wall_x(t_data *data, double *depth, double *wall_x, int flag);
 int		error_message(char *detail, char *str);
 int		parse_args(t_data *data, char **av);
 void	parse_map(t_data *data, char *av);

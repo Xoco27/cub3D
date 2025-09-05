@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:48:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 15:04:21 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:17:07 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ void	print_map(char **map, t_data *data)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == '0' || map[y][x] == 'P')
-				print_img(data->img.floor, x, y, data);
-			if (map[y][x] == '1')
-				print_img(data->img.wall, x, y, data);
+			if (map[y][x] == '0' || map[y][x] == 'P' || map[y][x] == '1')
+				print_img(data->map.floor, x, y, data);
+			// if (map[y][x] == '1')
+			// 	print_img(data->map.wall, x, y, data);
 			x++;
 		}
 		y++;
