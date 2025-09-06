@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:08:57 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/08/28 16:01:39 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:42:25 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	validate_map(t_data *data)
 	if (!validate_player_position(data->mapinfo.file))
 		return (error_message(*data->mapinfo.file, ERR_PLAYER_POS));
 	if (!validate_elements(data->mapinfo.file))
-		return (error_message(*data->mapinfo.file, ERR_ELEMENT));
+		(error_message(*data->mapinfo.file, ERR_ELEMENT));
 	return (0);
 }
 

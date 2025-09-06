@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:23 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/28 13:26:49 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:53:18 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,18 @@ int	fill_color_textures(t_texture *tex, char *line, int j)
 {
 	char	*value;
 
-	while (line[j] == ' ' || line[j] == '\t')
-		j++;
 	if (line[j] == 'F' && (line[j + 1] == ' ' || line[j + 1] == '\t'))
 	{
-		if (tex->color.has_floor)
-			return (1);
 		value = ft_strtrim(line + j + 1, " \t\n");
 		if (!value || parse_rgb(tex->color.floor, value))
 			return (free(value), 1);
+		printf("%d \n", *tex->color.floor);
 		free(value);
 		tex->color.has_floor = 1;
 		return (0);
 	}
 	else if (line[j] == 'C' && (line[j + 1] == ' ' || line[j + 1] == '\t'))
 	{
-		if (tex->color.has_ceiling)
-			return (1);
 		value = ft_strtrim(line + j + 1, " \t\n");
 		if (!value || parse_rgb(tex->color.ceiling, value))
 			return (free(value), 1);

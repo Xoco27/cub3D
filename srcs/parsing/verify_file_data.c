@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:40:57 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/05 19:28:45 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:54:11 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,8 @@ int	fill_direction_textures(t_texture *tex, char *line, int j)
 {
 	char	*path;
 
-	while (line[j] == ' ' || line[j] == '\t')
-		j++;
 	if (ft_strncmp(line + j, "NO", 2) == 0 && (line[j + 2] == ' ' || line[j + 2] == '\t'))
 	{
-		// if (tex->north != NULL)
-		// 	return (1); // déjà défini
 		path = ft_strtrim(line + j + 2, " \t\n");
 		if (!path)
 			return (1);
@@ -75,8 +71,6 @@ int	fill_direction_textures(t_texture *tex, char *line, int j)
 	}
 	else if (ft_strncmp(line + j, "SO", 2) == 0 && (line[j + 2] == ' ' || line[j + 2] == '\t'))
 	{
-		// if (tex->south != NULL)
-		// 	return (1);
 		path = ft_strtrim(line + j + 2, " \t\n");
 		if (!path)
 			return (1);
@@ -85,8 +79,6 @@ int	fill_direction_textures(t_texture *tex, char *line, int j)
 	}
 	else if (ft_strncmp(line + j, "WE", 2) == 0 && (line[j + 2] == ' ' || line[j + 2] == '\t'))
 	{
-		// if (tex->west != NULL)
-		// 	return (1);
 		path = ft_strtrim(line + j + 2, " \t\n");
 		if (!path)
 			return (1);
@@ -95,14 +87,15 @@ int	fill_direction_textures(t_texture *tex, char *line, int j)
 	}
 	else if (ft_strncmp(line + j, "EA", 2) == 0 && (line[j + 2] == ' ' || line[j + 2] == '\t'))
 	{
-		// if (tex->east != NULL)
-		// 	return (1);
 		path = ft_strtrim(line + j + 2, " \t\n");
 		if (!path)
 			return (1);
 		tex->east = path;
 		return (0);
 	}
+	else if (ft_strncmp(line + j, "F", 1) == 0
+		|| ft_strncmp(line + j, "C", 1) == 0)
+		return (0);
 	return (1);
 }
 
@@ -124,8 +117,8 @@ static int	get_into_file(t_data *data, char **map, int i)
 		}
 		else
 		{
-			if (!fill_color_textures(&data->texture, map[i], j))
-				return (1);
+			if (fill_color_textures(&data->texture, map[i], j) == 1)
+				return (error_message(map[i], ERR_TEXTURE_INVALID));
 			return (2);
 		}
 	}
@@ -140,15 +133,7 @@ int	verify_file_data(t_data *data, char **map)
 	while (map[i])
 	{
 		get_into_file(data, map, i);
-		// j = 0;
-		// while (map[i][j])
-		// {
-		// 	// get_into_file(data, map, i, j);
-		// 	j++;
-		// }
-		if (!is_map_line(map[i]))
-			i++;
-		else
+		if (is_map_line(map[i]))
 			create_map(data, map);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/04 14:56:22 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:43:58 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,29 @@
 
 static int	is_texture_line(char *line)
 {
+	int	j;
+
+	j = 0;
+	while (line[j] == ' ' || line[j] == '\t')
+		j++;
 	return (
-		ft_strncmp(line, "NO ", 3) == 0 ||
-		ft_strncmp(line, "SO ", 3) == 0 ||
-		ft_strncmp(line, "WE ", 3) == 0 ||
-		ft_strncmp(line, "EA ", 3) == 0
+		ft_strncmp(line + j, "NO ", 3) == 0 ||
+		ft_strncmp(line + j, "SO ", 3) == 0 ||
+		ft_strncmp(line + j, "WE ", 3) == 0 ||
+		ft_strncmp(line + j, "EA ", 3) == 0
 	);
 }
 
 static int	is_color_line(char *line)
 {
+	int	j;
+
+	j = 0;
+	while (line[j] == ' ' || line[j] == '\t')
+		j++;
 	return (
-		ft_strncmp(line, "F ", 2) == 0
-		|| ft_strncmp(line, "C ", 2) == 0
+		ft_strncmp(line + j, "F ", 2) == 0
+		|| ft_strncmp(line + j, "C ", 2) == 0
 	);
 }
 
