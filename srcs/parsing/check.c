@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:08:57 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/06 17:42:25 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:36:11 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int	validate_map(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	if (!(data->mapinfo.file))
 		return (error_message(*data->mapinfo.file, ERR_MAP_MISSING));
-	if (!validate_walls(data->mapinfo.file))
+	if (!validate_walls(data->mapinfo.file, i))
 		return (error_message(*data->mapinfo.file, ERR_WALL_INVALID));
-	if (!validate_player_position(data->mapinfo.file))
+	i = 0;
+	if (!validate_player_position(data->mapinfo.file, i))
 		return (error_message(*data->mapinfo.file, ERR_PLAYER_POS));
 	if (!validate_elements(data->mapinfo.file))
 		(error_message(*data->mapinfo.file, ERR_ELEMENT));

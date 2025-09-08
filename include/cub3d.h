@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/06 17:47:32 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:36:21 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #  define SPEED 0.2
 # endif
 # ifndef TILE
-#  define TILE 128
+#  define TILE 64
 # endif
 # ifndef PI
 #  define PI 3.141592653589793
@@ -182,8 +182,8 @@ int		parse_args(t_data *data, char **av);
 void	parse_map(t_data *data, char *av);
 void	free_tab(void **tab);
 void	fill_tab(int row, int column, int i, t_data *data);
-bool	validate_walls(char **map);
-int		validate_player_position(char **file);
+bool	validate_walls(char **map, int i);
+int		validate_player_position(char **file, int i);
 int		validate_elements(char **file);
 int		verify_file_data(t_data *data, char **map);
 int		fill_color_textures(t_texture *tex, char *line, int j);

@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:23 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/06 17:53:18 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:41:14 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_free_split(char **split)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (!split)
 		return ;
 	while (split[i])
@@ -25,7 +26,6 @@ void	ft_free_split(char **split)
 	}
 	free(split);
 }
-
 
 static int	parse_rgb(int *dst, char *str)
 {

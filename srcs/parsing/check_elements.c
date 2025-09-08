@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/06 17:43:58 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:37:11 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	is_texture_line(char *line)
 	while (line[j] == ' ' || line[j] == '\t')
 		j++;
 	return (
-		ft_strncmp(line + j, "NO ", 3) == 0 ||
-		ft_strncmp(line + j, "SO ", 3) == 0 ||
-		ft_strncmp(line + j, "WE ", 3) == 0 ||
-		ft_strncmp(line + j, "EA ", 3) == 0
+		ft_strncmp(line + j, "NO ", 3) == 0
+		|| ft_strncmp(line + j, "SO ", 3) == 0
+		|| ft_strncmp(line + j, "WE ", 3) == 0
+		|| ft_strncmp(line + j, "EA ", 3) == 0
 	);
 }
 
@@ -42,8 +42,9 @@ static int	is_color_line(char *line)
 
 static int	is_map_liner(char *line)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (line[i])
 	{
 		if (*line == 'F' || *line == 'C')
@@ -73,12 +74,9 @@ int	validate_elements(char **file)
 		else if (is_color_line(file[i]))
 			colors++;
 		else if (file[i][0] == '\0' || file[i][0] == '\n')
-			continue ;
-		// else
-		// 	return (false);
+			;
 		i++;
 	}
-	// printf("Textures: %d, Colors: %d\n", textures, colors);
 	if (textures != 4 || colors != 2)
 		return (false);
 	if (!file[i] || !is_map_liner(file[i]))
