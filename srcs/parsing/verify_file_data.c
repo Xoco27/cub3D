@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   verify_file_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:40:57 by mgarsaul          #+#    #+#             */
 /*   Updated: 2025/09/06 17:54:11 by mgarsaul         ###   ########.fr       */
