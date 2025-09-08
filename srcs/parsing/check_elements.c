@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/06 17:43:58 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 19:54:29 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ static int	is_color_line(char *line)
 
 static int	is_map_liner(char *line)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (line[i])
 	{
-		if (*line == 'F' || *line == 'C')
+		if (*line == 'F' || *line == 'C' || *line == '\0')
 			return (0);
 		if (line[i] == '1')
 			return (1);
@@ -73,9 +74,7 @@ int	validate_elements(char **file)
 		else if (is_color_line(file[i]))
 			colors++;
 		else if (file[i][0] == '\0' || file[i][0] == '\n')
-			continue ;
-		// else
-		// 	return (false);
+			;
 		i++;
 	}
 	// printf("Textures: %d, Colors: %d\n", textures, colors);
