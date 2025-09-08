@@ -31,9 +31,9 @@ int	on_destroy(t_data *data)
 
 int	on_keypress(int keysym, t_data *data)
 {
-	int		i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	data->player.dir_x = cos(data->player.angle);
 	data->player.dir_y = sin(data->player.angle);
 	data->player.side_x = -sin(data->player.angle);

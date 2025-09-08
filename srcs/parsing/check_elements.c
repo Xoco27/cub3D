@@ -73,11 +73,12 @@ int	validate_elements(char **file)
 		else if (is_color_line(file[i]))
 			colors++;
 		else if (file[i][0] == '\0' || file[i][0] == '\n')
-			;
-		else
-			return (false);
+			continue ;
+		// else
+		// 	return (false);
 		i++;
 	}
+	// printf("Textures: %d, Colors: %d\n", textures, colors);
 	if (textures != 4 || colors != 2)
 		return (false);
 	if (!file[i] || !is_map_liner(file[i]))
