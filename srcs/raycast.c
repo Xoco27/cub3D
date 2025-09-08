@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/04 15:17:19 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:00:45 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,9 @@ static void	display_walls(t_data *data,
 	data->tex_pos += (double)TILE / proj_height;
 	pixel = data->tex.addr + (tex_y * data->tex.line_len
 			+ tex_x * (data->tex.bpp / 8));
-	if ((*(int *)pixel) != 0x00000000)
-		my_mlx_pixel_put(&data->img[0], data->scale * i,
-			data->win_height / 2 - proj_height / 2 + data->index,
-			*(int *)pixel);
+	my_mlx_pixel_put(&data->img[0], data->scale * i,
+		data->win_height / 2 - proj_height / 2 + data->index,
+		*(int *)pixel);
 }
 
 void	ray_cast(t_data *data, int i)
