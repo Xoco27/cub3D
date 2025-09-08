@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 20:36:21 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:13:43 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	ft_exit(t_data *data);
 int		is_map_valid(t_data *data);
 int		another_check(t_data *data);
 int		non_valid(char **map);
-int		check_filename(char *arg, bool cub);
+int		check_filename(t_data *data, char *arg, bool cub);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
 void	ray_cast(t_data *data, int i);
@@ -177,7 +177,7 @@ int		render(t_data *data);
 double	ray_hori_loop(t_data *data, double y_hori, double dy);
 double	ray_vert_loop(t_data *data, double x_vert, double dx);
 void	depth_wall_x(t_data *data, double *depth, double *wall_x, int flag);
-int		error_message(char *detail, char *str);
+int		error_message(t_data *data, char *detail, char *str);
 int		parse_args(t_data *data, char **av);
 void	parse_map(t_data *data, char *av);
 void	free_tab(void **tab);

@@ -6,12 +6,11 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 20:24:12 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:13:44 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
 
 static bool	is_dir(char *arg)
 {
@@ -52,20 +51,20 @@ static bool	is_xpm_file(char *arg)
 	return (true);
 }
 
-int	check_filename(char *arg, bool cub)
+int	check_filename(t_data *data, char *arg, bool cub)
 {
 	int	fd;
 
 	if (is_dir(arg))
-		return (error_message(arg, "tg"));
+		return (error_message(data, arg, "tg"));
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		return (error_message(arg, strerror(errno)));
+		return (error_message(data, arg, strerror(errno)));
 	close(fd);
 	if (cub && !is_cub_file(arg))
-		return (error_message(arg, "tg"));
+		return (error_message(data, arg, "tg"));
 	if (!cub && !is_xpm_file(arg))
-		return (error_message(arg, "tg"));
+		return (error_message(data, arg, "tg"));
 	return (0);
 }
 

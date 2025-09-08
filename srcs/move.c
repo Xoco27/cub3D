@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/03 13:18:52 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:49:42 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ void	update_pos(t_data *data, int keysym)
 	{
 		data->player.pos_x = data->player.next_x;
 		data->player.pos_y = data->player.next_y;
-		//print_map(data->tab, data);
 	}
 }
