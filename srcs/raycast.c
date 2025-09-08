@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 20:00:45 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:04:33 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ray_cast(t_data *data, int i)
 		proj_height = data->screen_dist / (depth);
 		data->tex_pos = 0;
 		data->index = 0;
-		while (proj_height > 0 && data->index < proj_height)
+		while (data->index < proj_height)
 		{
 			display_walls(data, proj_height, wall_x, i);
 			data->index++;

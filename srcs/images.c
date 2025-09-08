@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 19:25:45 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:11:07 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ void	create_images(t_data *data)
 {
 	wh(data);
 	data->assets = malloc(sizeof(char *) * 5);
-	data->assets[0] = ft_strdup("assets/wall.xpm");
-	data->assets[1] = ft_strdup("assets/floor.xpm");
-	data->assets[2] = ft_strdup("assets/link_down.xpm");
-	data->assets[3] = ft_strdup("assets/door_opened.xpm");
+	data->assets[0] = ft_strdup(data->texture.north);
+	data->assets[1] = ft_strdup(data->texture.south);
+	data->assets[2] = ft_strdup(data->texture.east);
+	data->assets[3] = ft_strdup(data->texture.west);
 	init_img(data, data->img);
 	// data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
 	// 		"assets/floor.xpm", &data->player.width, &data->player.height);
