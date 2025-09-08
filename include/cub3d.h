@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/04 15:25:19 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:47:32 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ERR_FILE "Error file"
 # define ERR_TEXTURE_INVALID "Error invalid texture"
 # define ERR_INVALID_MAP "Error Invalid map"
+# define ERR_COLOR_INVALID "Error invalid color"
 
 # include <stdlib.h>
 # include <math.h>

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:48:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/04 15:17:07 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:54:48 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ char	**fill_rows(char **map, char *filepath)
 	close(fd);
 	return (map);
 }
-
 
 void	print_img(void *img, int x, int y, t_data *data)
 {
