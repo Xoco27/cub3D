@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 17:34:37 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:03:42 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ int	check_filename(t_data *data, char *arg, bool cub)
 	int	fd;
 
 	if (is_dir(arg))
-		return (error_message(data, arg, "tg"));
+		return (error_message(data, arg, ERR_INVALID_FILENAME));
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 		return (error_message(data, arg, strerror(errno)));
 	close(fd);
 	if (cub && !is_cub_file(arg))
-		return (error_message(data, arg, "tg"));
+		return (error_message(data, arg, ERR_INVALID_FILENAME));
 	if (!cub && !is_xpm_file(arg))
-		return (error_message(data, arg, "tg"));
+		return (error_message(data, arg, ERR_INVALID_FILENAME));
 	return (0);
 }
 
