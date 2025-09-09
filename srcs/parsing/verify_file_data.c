@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:40:57 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 16:40:37 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:13:38 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static int	set_texture_path(t_data *data, char **dest,
 	path = ft_strtrim(line + j + skip, " \t\n");
 	if (!path)
 		return (1);
-
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -77,7 +76,6 @@ static int	set_texture_path(t_data *data, char **dest,
 		return (1);
 	}
 	close(fd);
-
 	*dest = path;
 	return (0);
 }
