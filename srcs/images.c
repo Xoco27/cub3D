@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   images.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 13:07:14 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:34:37 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,47 @@ int	check_filename(t_data *data, char *arg, bool cub)
 	return (0);
 }
 
+// void	wh(t_data *data)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	data->map.width = 0;
+// 	while (data->tab[i])
+// 		i++;
+// 	data->map.height = i;
+// 	j = 0;
+// 	while (data->tab[j])
+// 	{
+// 		while (data->tab[j][i])
+// 			i++;
+// 		if (i > data->map.width)
+// 			data->map.width = i;
+// 		j++;
+// 	}
+// 	data->player.width = TILE;
+// 	data->player.height = TILE;
+// 	pos(data->tab, data);
+// }
+
 void	wh(t_data *data)
 {
 	int	i;
 	int	j;
 
-	i = 0;
 	data->map.width = 0;
-	while (data->tab[i])
-		i++;
-	data->map.height = i;
 	j = 0;
 	while (data->tab[j])
 	{
+		i = 0;
 		while (data->tab[j][i])
 			i++;
 		if (i > data->map.width)
 			data->map.width = i;
 		j++;
 	}
+	data->map.height = j;
 	data->player.width = TILE;
 	data->player.height = TILE;
 	pos(data->tab, data);
