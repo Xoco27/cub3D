@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 18:21:32 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:41:36 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,29 @@ static	void	init_char(t_data *data, double angle, int x, int y)
 	data->player.angle = angle;
 }
 
-static void	check_pos(t_data *data, int x, int y, char **map)
+static int	check_pos_a(t_data *data, int x, int y, char **map)
 {
 	if (map[y][x] == 'N')
 	{
 		init_char(data, 270 * PI / 180, x, y);
-		return ;
+		return (1);
 	}
 	if (map[y][x] == 'W')
 	{
 		init_char(data, 180 * PI / 180, x, y);
-		return ;
+		return (1);
 	}
 	if (map[y][x] == 'S')
 	{
 		init_char(data, 90 * PI / 180, x, y);
-		return ;
+		return (1);
 	}
 	if (map[y][x] == 'E')
 	{
 		init_char(data, 0, x, y);
-		return ;
+		return (1);
 	}
+	return (0);
 }
 
 void	pos(char **map, t_data *data)
@@ -67,7 +68,8 @@ void	pos(char **map, t_data *data)
 		x = 0;
 		while (map[y][x])
 		{
-			check_pos(data, x, y, map);
+			if (check_pos_a(data, x, y, map))
+				return ;
 			x++;
 		}
 		y++;
