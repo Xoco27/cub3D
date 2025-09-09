@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 17:53:58 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:45:45 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int		non_valid(char **map);
 int		check_filename(t_data *data, char *arg, bool cub);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
-void	ray_cast(t_data *data, int i);
+void	ray_cast(t_data *data);
 void	rotate(t_data *data, int keysym);
 void	update_pos(t_data *data, int keysym);
 void	init_img(t_data *data, t_img *img);
