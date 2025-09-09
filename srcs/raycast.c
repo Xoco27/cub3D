@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 15:07:34 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:12:02 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,8 @@ static void	ray_hori(t_data *data, double cos_a, double sin_a)
 	data->x_hori = ray_hori_loop(data, y_hori, dy);
 }
 
-// static void	display_walls(t_data *data,
-// 	double proj_height, double wall_x, int i)
-// {
-// 	int		tex_x;
-// 	int		tex_y;
-// 	char	*pixel;
-
-// 	tex_x = (int)(wall_x * TILE);
-// 	tex_y = (int)data->tex_pos;
-// 	data->tex_pos += (double)TILE / proj_height;
-// 	pixel = data->tex.addr + (tex_y * data->tex.line_len
-// 			+ tex_x * (data->tex.bpp / 8));
-// 	my_mlx_pixel_put(&data->img[0], data->scale * i,
-// 		data->win_height / 2 - proj_height / 2 + data->index,
-// 		*(int *)pixel);
-// }
-
-static void display_walls(t_data *data, double proj_height, double wall_x, int i)
+static void	display_walls(t_data *data, double proj_height,
+	double wall_x, int i)
 {
 	int		tex_x;
 	int		w;
