@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:43:18 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 15:03:24 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:00:44 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,15 @@ void	draw_floor_and_sky(t_data *data)
 		while (j < data->win_height)
 		{
 			if (j < data->win_height / 2)
-				my_mlx_pixel_put(&data->img[0], i, j, trgb(0, 100, 100, 200));
+				my_mlx_pixel_put(&data->img[0], i, j,
+					trgb(0, data->texture.color.ceiling[0],
+						data->texture.color.ceiling[1],
+						data->texture.color.ceiling[2]));
 			else
-				my_mlx_pixel_put(&data->img[0], i, j, trgb(0, 80, 80, 80));
+				my_mlx_pixel_put(&data->img[0], i, j,
+					trgb(0, data->texture.color.floor[0],
+						data->texture.color.floor[1],
+						data->texture.color.floor[2]));
 			j++;
 		}
 	}

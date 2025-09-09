@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 15:20:46 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:46:16 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,5 +188,6 @@ int		verify_file_data(t_data *data, char **map);
 int		fill_color_textures(t_texture *tex, char *line, int j);
 int		create_map(t_data *data, char **file);
 bool	is_map_line(char *line);
+int		is_texture_line(char *line);
 
 #endif

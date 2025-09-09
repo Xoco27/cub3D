@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 13:00:43 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:46:16 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	is_texture_line(char *line)
+int	is_texture_line(char *line)
 {
 	int	j;
 
@@ -25,6 +25,7 @@ static int	is_texture_line(char *line)
 		|| ft_strncmp(line + j, "WE ", 3) == 0
 		|| ft_strncmp(line + j, "EA ", 3) == 0
 	);
+	return (1);
 }
 
 static int	is_color_line(char *line)
