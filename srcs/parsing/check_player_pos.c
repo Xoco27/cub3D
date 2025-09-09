@@ -6,13 +6,14 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:48:40 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/08 20:39:24 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:13:56 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	check_player(char **file, int i, int j, int start, int *player_count)
+static int	check_player(char **file, int i, int j,
+		int start, int *player_count)
 {
 	(*player_count)++;
 	if (i == start || !file[i + 1] || j == 0 || !file[i][j + 1]

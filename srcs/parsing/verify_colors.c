@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:23 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 17:08:17 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:13:17 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,3 @@ int	fill_color_textures(t_texture *tex, char *line, int j)
 		return (0);
 	return (1);
 }
-
