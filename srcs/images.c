@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 13:00:09 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 13:07:14 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,8 @@ void	destroy(t_data *data)
 		i++;
 	}
 	free(data->assets);
+	free(data->texture.east);
+	free(data->texture.south);
+	free(data->texture.west);
+	free(data->texture.north);
 }
