@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 15:20:46 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:08:19 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ typedef struct s_data
 	double		sin_a;
 	double		index;
 	double		tex_pos;
-	int			r;
 	char		**clone;
 	t_mapinfo	map;
 	t_player	player;
@@ -188,5 +187,6 @@ int		verify_file_data(t_data *data, char **map);
 int		fill_color_textures(t_texture *tex, char *line, int j);
 int		create_map(t_data *data, char **file);
 bool	is_map_line(char *line);
+int		mouse(int x, int y, t_data *data);
 
 #endif
