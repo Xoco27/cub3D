@@ -51,12 +51,9 @@ $(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(MLX_LIB):
-	$(MAKE) -C $(MLX_DIR)
 
 clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(MAKE) clean -C $(MLX_DIR)
 	rm -rf $(OBJ_DIR)
 
 fclean: clean

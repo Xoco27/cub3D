@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 15:12:02 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:59:30 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,12 @@ static void	display_walls(t_data *data, double proj_height,
 	int		tex_y;
 	char	*pixel;
 
-	data->tex_pos = 0;
 	w = 0;
 	tex_x = (int)(wall_x * TILE);
-	while (w++ < data->scale)
+	while (w < data->scale)
 	{
 		data->index = 0;
-		while (data->index++ < proj_height)
+		while (data->index < proj_height)
 		{
 			tex_y = (int)data->tex_pos;
 			data->tex_pos += (double)TILE / proj_height;
@@ -87,8 +86,10 @@ static void	display_walls(t_data *data, double proj_height,
 			my_mlx_pixel_put(&data->img[0], data->scale * i + w,
 				data->win_height / 2 - proj_height / 2 + data->index,
 				*(int *)pixel);
+			data->index++;
 		}
 		data->tex_pos = 0;
+		w++;
 	}
 }
 
@@ -111,12 +112,7 @@ void	ray_cast(t_data *data, int i)
 		depth *= cos(data->player.angle - ray_angle);
 		proj_height = data->screen_dist / (depth);
 		data->tex_pos = 0;
-		data->index = 0;
-		while (data->index < proj_height)
-		{
-			display_walls(data, proj_height, wall_x, i);
-			data->index++;
-		}
+		display_walls(data, proj_height, wall_x, i);
 		ray_angle += data->delta_angle;
 	}
 }

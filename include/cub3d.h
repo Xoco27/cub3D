@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
 /*   Updated: 2025/09/09 18:03:59 by mgarsaul         ###   ########.fr       */
@@ -121,6 +121,7 @@ typedef struct s_data
 	int			move;
 	int			screen_dist;
 	int			scale;
+	int			keys[512];
 	double		fov;
 	double		num_rays;
 	double		delta_angle;

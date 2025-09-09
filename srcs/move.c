@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 16:55:09 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:59:19 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	mouse(int x, int y, t_data *data)
 		data->player.angle += 2 * PI;
 	else if (data->player.angle >= 2 * PI)
 		data->player.angle -= 2 * PI;
+
 	mlx_mouse_move(data->mlx_ptr, data->win_ptr,
 		half_x, half_y);
 	return (0);
