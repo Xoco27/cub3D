@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 15:19:47 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:43:19 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	hook(t_data *data)
 {
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, 2, 1L << 0, on_keypress, data);
+	mlx_hook(data->win_ptr, 6, 1L << 6, mouse, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask,
 		on_destroy, data);
 	mlx_loop(data->mlx_ptr);

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 13:00:30 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:55:09 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,29 @@ void	rotate(t_data *data, int keysym)
 			data->player.angle = 0;
 	}
 }
+
+int	mouse(int x, int y, t_data *data)
+{
+	double		sensitivity;
+	int			dx;
+	double		half_x;
+	double		half_y;
+
+	half_x = data->win_width / 2;
+	half_y = data->win_height / 2;
+	(void)y;
+	sensitivity = 0.001;
+	dx = x - half_x;
+	data->player.angle += dx * sensitivity;
+	if (data->player.angle < 0)
+		data->player.angle += 2 * PI;
+	else if (data->player.angle >= 2 * PI)
+		data->player.angle -= 2 * PI;
+	mlx_mouse_move(data->mlx_ptr, data->win_ptr,
+		half_x, half_y);
+	return (0);
+}
+
 
 void	update_pos(t_data *data, int keysym)
 {

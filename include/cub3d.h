@@ -132,7 +132,6 @@ typedef struct s_data
 	double		sin_a;
 	double		index;
 	double		tex_pos;
-	int			r;
 	char		**clone;
 	t_mapinfo	map;
 	t_player	player;
@@ -189,5 +188,6 @@ int		fill_color_textures(t_texture *tex, char *line, int j);
 int		create_map(t_data *data, char **file);
 bool	is_map_line(char *line);
 int		is_texture_line(char *line);
+int		mouse(int x, int y, t_data *data);
 
 #endif
