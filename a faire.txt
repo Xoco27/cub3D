@@ -13,3 +13,5 @@ double	step = 0.01
 		// 	}
 		// 	t += step;
 		// }
+
+Bug de blocage a 0 (en vrai possible d'ignorer en rendant la rotation fluide)

@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:00:15 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 17:20:49 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:21:32 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,37 @@ static	void	init_data(t_data *data)
 	data->scale = data->win_width / data->num_rays;
 }
 
-static	void	init_char(t_data *data, int angle, int x, int y)
+static	void	init_char(t_data *data, double angle, int x, int y)
 {
 	data->player.pos_x = x + 0.5;
 	data->player.pos_y = y + 0.5;
 	data->map.map_x = x;
 	data->map.map_y = y;
 	data->player.angle = angle;
+}
+
+static void	check_pos(t_data *data, int x, int y, char **map)
+{
+	if (map[y][x] == 'N')
+	{
+		init_char(data, 270 * PI / 180, x, y);
+		return ;
+	}
+	if (map[y][x] == 'W')
+	{
+		init_char(data, 180 * PI / 180, x, y);
+		return ;
+	}
+	if (map[y][x] == 'S')
+	{
+		init_char(data, 90 * PI / 180, x, y);
+		return ;
+	}
+	if (map[y][x] == 'E')
+	{
+		init_char(data, 0, x, y);
+		return ;
+	}
 }
 
 void	pos(char **map, t_data *data)
@@ -41,29 +65,9 @@ void	pos(char **map, t_data *data)
 	while (map[y])
 	{
 		x = 0;
-		data->player.angle = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'N')
-			{
-				init_char(data, 270 * PI / 180, x, y);
-				return ;
-			}
-			if (map[y][x] == 'W')
-			{
-				init_char(data, 180 * PI / 180, x, y);
-				return ;
-			}
-			if (map[y][x] == 'S')
-			{
-				init_char(data, 90 * PI / 180, x, y);
-				return ;
-			}
-			if (map[y][x] == 'E')
-			{
-				init_char(data, 0, x, y);
-				return ;
-			}
+			check_pos(data, x, y, map);
 			x++;
 		}
 		y++;

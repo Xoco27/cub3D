@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 17:17:17 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:59:19 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ int	mouse(int x, int y, t_data *data)
 	dx = x - half_x;
 	data->player.angle += dx * sensitivity;
 	if (data->player.angle < 0)
-		data->player.angle += 360 * PI / 180;
-	else if (data->player.angle >= 360 * PI / 180)
-		data->player.angle -= 360 * PI / 180;
+		data->player.angle += 2 * PI;
+	else if (data->player.angle >= 2 * PI)
+		data->player.angle -= 2 * PI;
+
 	mlx_mouse_move(data->mlx_ptr, data->win_ptr,
 		half_x, half_y);
 	return (0);
