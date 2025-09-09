@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_file_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:40:57 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 13:00:51 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:40:37 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,11 @@ static int	get_into_file(t_data *data, char **map, int i)
 		{
 			if (fill_direction_textures(data, &data->texture, map[i], j) == 1)
 				return (error_message(data, map[i], ERR_TEXTURE_INVALID));
-			return (2);
-		}
-		else
-		{
-			if (fill_color_textures(&data->texture, map[i], j) == 1)
-				return (error_message(data, map[i], ERR_TEXTURE_INVALID));
-			return (2);
+			else
+			{
+				if (fill_color_textures(&data->texture, map[i], j) == 1)
+					return (error_message(data, map[i], ERR_COLOR_INVALID));
+			}
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:23 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/08 21:32:22 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:01:46 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_free_split(char **split)
 	free(split);
 }
 
-static int	parse_rgb(int *dst, char *str)
+static int	parse_rgb(int dst[3], char *str)
 {
 	char	**split;
 	int		i;
@@ -39,15 +39,15 @@ static int	parse_rgb(int *dst, char *str)
 	i = 0;
 	while (split[i])
 		i++;
-	if (i != 3) // doit contenir exactement 3 valeurs
+	if (i != 3)
 		return (ft_free_split(split), 1);
 	i = 0;
 	while (i < 3)
 	{
-		if (split[i][0] == '\0') // valeur vide
+		if (split[i][0] == '\0')
 			return (ft_free_split(split), 1);
 		val = ft_atoi(split[i]);
-		if (val < 0 || val > 255) // hors bornes
+		if (val < 0 || val > 255)
 			return (ft_free_split(split), 1);
 		dst[i] = val;
 		i++;
@@ -60,23 +60,28 @@ int	fill_color_textures(t_texture *tex, char *line, int j)
 {
 	char	*value;
 
-	if (line[j] == 'F' && (line[j + 1] == ' ' || line[j + 1] == '\t'))
+	if (ft_strncmp(line + j, "F", 1) == 0)
 	{
 		value = ft_strtrim(line + j + 1, " \t\n");
 		if (!value || parse_rgb(tex->color.floor, value))
 			return (free(value), 1);
 		free(value);
 		tex->color.has_floor = 1;
+		printf("%d %d %d\n", tex->color.floor[0], tex->color.floor[1], tex->color.floor[2]);
 		return (0);
 	}
-	else if (line[j] == 'C' && (line[j + 1] == ' ' || line[j + 1] == '\t'))
+	else if (ft_strncmp(line + j, "C", 1) == 0)
 	{
 		value = ft_strtrim(line + j + 1, " \t\n");
 		if (!value || parse_rgb(tex->color.ceiling, value))
 			return (free(value), 1);
 		free(value);
 		tex->color.has_ceiling = 1;
+		printf("%d %d %d\n", tex->color.ceiling[0], tex->color.ceiling[1], tex->color.ceiling[2]);
 		return (0);
 	}
+	if (is_texture_line(line))
+		return (0);
 	return (1);
 }
+
