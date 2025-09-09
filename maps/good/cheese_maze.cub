@@ -1,7 +1,7 @@
-NO assets/test/north.xpm
-SO assets/test/south.xpm
-WE assets/test/west.xpm
-EA assets/test/east.xpm
+NO assets/wolfenstein/blue_stone.xpm
+SO assets/wolfenstein/eagle.xpm
+WE assets/wolfenstein/mossy.xpm
+EA assets/wolfenstein/color_stone.xpm
 
 F 164,169,20
 C 153,204,255

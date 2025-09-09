@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 20:47:04 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:19:47 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (perror("Error\nNot enough or too much arguments."), 1);
 	parse_args(&data, argv);
-	verify_file_data(&data, data.mapinfo.file);
+	verify_file_data(&data, data.map.file);
 	data.move = 0;
 	if (data.tab == NULL)
 		return (perror("Error\nEmpty map"), 1);

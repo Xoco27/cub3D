@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:08:57 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 21:13:44 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:19:50 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ int	validate_map(t_data *data)
 	int	i;
 
 	i = 0;
-	if (!(data->mapinfo.file))
-		return (error_message(data, *data->mapinfo.file, ERR_MAP_MISSING));
-	if (!validate_walls(data->mapinfo.file, i))
-		return (error_message(data, *data->mapinfo.file, ERR_WALL_INVALID));
+	if (!(data->map.file))
+		return (error_message(data, *data->map.file, ERR_MAP_MISSING));
+	if (!validate_walls(data->map.file, i))
+		return (error_message(data, *data->map.file, ERR_WALL_INVALID));
 	i = 0;
-	if (!validate_player_position(data->mapinfo.file, i))
-		return (error_message(data, *data->mapinfo.file, ERR_PLAYER_POS));
-	if (!validate_elements(data->mapinfo.file))
-		(error_message(data, *data->mapinfo.file, ERR_ELEMENT));
+	if (!validate_player_position(data->map.file, i))
+		return (error_message(data, *data->map.file, ERR_PLAYER_POS));
+	if (!validate_elements(data->map.file))
+		(error_message(data, *data->map.file, ERR_ELEMENT));
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/08 20:37:11 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 13:00:43 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	is_map_liner(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (*line == 'F' || *line == 'C')
+		if (*line == 'F' || *line == 'C' || *line == '\0')
 			return (0);
 		if (line[i] == '1')
 			return (1);

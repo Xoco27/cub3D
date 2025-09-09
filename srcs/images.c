@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   images.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 21:13:44 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 13:07:14 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ void	create_images(t_data *data)
 {
 	wh(data);
 	data->assets = malloc(sizeof(char *) * 5);
-	data->assets[0] = ft_strdup(data->texture.west);
-	data->assets[1] = ft_strdup(data->texture.east);
-	data->assets[2] = ft_strdup(data->texture.south);
-	data->assets[3] = ft_strdup(data->texture.north);
+	data->assets[0] = ft_strdup(data->texture.north);
+	data->assets[1] = ft_strdup(data->texture.south);
+	data->assets[2] = ft_strdup(data->texture.east);
+	data->assets[3] = ft_strdup(data->texture.west);
 	init_img(data, data->img);
 	// data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
 	// 		"assets/floor.xpm", &data->player.width, &data->player.height);
@@ -121,4 +121,8 @@ void	destroy(t_data *data)
 		i++;
 	}
 	free(data->assets);
+	free(data->texture.east);
+	free(data->texture.south);
+	free(data->texture.west);
+	free(data->texture.north);
 }
