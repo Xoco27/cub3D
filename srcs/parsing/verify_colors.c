@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:23 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 17:01:46 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:08:17 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	fill_color_textures(t_texture *tex, char *line, int j)
 			return (free(value), 1);
 		free(value);
 		tex->color.has_floor = 1;
-		printf("%d %d %d\n", tex->color.floor[0], tex->color.floor[1], tex->color.floor[2]);
 		return (0);
 	}
 	else if (ft_strncmp(line + j, "C", 1) == 0)
@@ -77,7 +76,6 @@ int	fill_color_textures(t_texture *tex, char *line, int j)
 			return (free(value), 1);
 		free(value);
 		tex->color.has_ceiling = 1;
-		printf("%d %d %d\n", tex->color.ceiling[0], tex->color.ceiling[1], tex->color.ceiling[2]);
 		return (0);
 	}
 	if (is_texture_line(line))
