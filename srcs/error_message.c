@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:48:38 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/08 21:02:29 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:47:30 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 void	free_all(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	if (!data)
 		return ;
-	// tout free ici
+	if (!data->map.file)
+		return ;
+	while (data->map.file[i])
+	{
+		free(data->map.file[i]);
+		i++;
+	}
+	free(data->map.file);
 }
 
 int	error_message(t_data *data, char *detail, char *str)
