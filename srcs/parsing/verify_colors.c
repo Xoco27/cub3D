@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:32:23 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/06 17:53:18 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:32:22 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	ft_free_split(char **split)
 {
-	int i = 0;
+	int	i;
 
 	if (!split)
 		return ;
+	i = 0;
 	while (split[i])
 	{
 		free(split[i]);
@@ -25,7 +26,6 @@ void	ft_free_split(char **split)
 	}
 	free(split);
 }
-
 
 static int	parse_rgb(int *dst, char *str)
 {
@@ -39,13 +39,15 @@ static int	parse_rgb(int *dst, char *str)
 	i = 0;
 	while (split[i])
 		i++;
-	if (i != 3)
+	if (i != 3) // doit contenir exactement 3 valeurs
 		return (ft_free_split(split), 1);
 	i = 0;
 	while (i < 3)
 	{
+		if (split[i][0] == '\0') // valeur vide
+			return (ft_free_split(split), 1);
 		val = ft_atoi(split[i]);
-		if (val < 0 || val > 255)
+		if (val < 0 || val > 255) // hors bornes
 			return (ft_free_split(split), 1);
 		dst[i] = val;
 		i++;
@@ -63,7 +65,6 @@ int	fill_color_textures(t_texture *tex, char *line, int j)
 		value = ft_strtrim(line + j + 1, " \t\n");
 		if (!value || parse_rgb(tex->color.floor, value))
 			return (free(value), 1);
-		printf("%d \n", *tex->color.floor);
 		free(value);
 		tex->color.has_floor = 1;
 		return (0);

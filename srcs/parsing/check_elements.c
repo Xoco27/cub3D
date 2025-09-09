@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/08 19:54:29 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 13:00:43 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	is_texture_line(char *line)
 	while (line[j] == ' ' || line[j] == '\t')
 		j++;
 	return (
-		ft_strncmp(line + j, "NO ", 3) == 0 ||
-		ft_strncmp(line + j, "SO ", 3) == 0 ||
-		ft_strncmp(line + j, "WE ", 3) == 0 ||
-		ft_strncmp(line + j, "EA ", 3) == 0
+		ft_strncmp(line + j, "NO ", 3) == 0
+		|| ft_strncmp(line + j, "SO ", 3) == 0
+		|| ft_strncmp(line + j, "WE ", 3) == 0
+		|| ft_strncmp(line + j, "EA ", 3) == 0
 	);
 }
 
@@ -77,7 +77,6 @@ int	validate_elements(char **file)
 			;
 		i++;
 	}
-	// printf("Textures: %d, Colors: %d\n", textures, colors);
 	if (textures != 4 || colors != 2)
 		return (false);
 	if (!file[i] || !is_map_liner(file[i]))

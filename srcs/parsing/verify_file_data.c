@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:40:57 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/08 19:24:37 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 13:00:51 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,42 +57,42 @@
 // 	return (0);
 // }
 
-int	fill_direction_textures(t_texture *tex, char *line, int j)
+static int	set_texture_path(t_data *data, char **dest,
+	char *line, int j, int skip)
 {
 	char	*path;
+	int		fd;
 
-	if (ft_strncmp(line + j, "NO", 2) == 0 && (line[j + 2] == ' ' || line[j + 2] == '\t'))
+	if (line[j + skip] != ' ' && line[j + skip] != '\t')
+		return (1);
+	path = ft_strtrim(line + j + skip, " \t\n");
+	if (!path)
+		return (1);
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
 	{
-		path = ft_strtrim(line + j + 2, " \t\n");
-		if (!path)
-			return (1);
-		tex->north = path;
-		return (0);
+		return (error_message(data, path, ERR_TEXTURE_INVALID));
+		free(path);
+		return (1);
 	}
-	else if (ft_strncmp(line + j, "SO", 2) == 0 && (line[j + 2] == ' ' || line[j + 2] == '\t'))
-	{
-		path = ft_strtrim(line + j + 2, " \t\n");
-		if (!path)
-			return (1);
-		tex->south = path;
-		return (0);
-	}
-	else if (ft_strncmp(line + j, "WE", 2) == 0 && (line[j + 2] == ' ' || line[j + 2] == '\t'))
-	{
-		path = ft_strtrim(line + j + 2, " \t\n");
-		if (!path)
-			return (1);
-		tex->west = path;
-		return (0);
-	}
-	else if (ft_strncmp(line + j, "EA", 2) == 0 && (line[j + 2] == ' ' || line[j + 2] == '\t'))
-	{
-		path = ft_strtrim(line + j + 2, " \t\n");
-		if (!path)
-			return (1);
-		tex->east = path;
-		return (0);
-	}
+	close(fd);
+
+	*dest = path;
+	return (0);
+}
+
+static int	fill_direction_textures(t_data *data, t_texture *tex,
+	char *line, int j)
+{
+	if (ft_strncmp(line + j, "NO", 2) == 0)
+		return (set_texture_path(data, &tex->north, line, j, 2));
+	else if (ft_strncmp(line + j, "SO", 2) == 0)
+		return (set_texture_path(data, &tex->south, line, j, 2));
+	else if (ft_strncmp(line + j, "WE", 2) == 0)
+		return (set_texture_path(data, &tex->west, line, j, 2));
+	else if (ft_strncmp(line + j, "EA", 2) == 0)
+		return (set_texture_path(data, &tex->east, line, j, 2));
 	else if (ft_strncmp(line + j, "F", 1) == 0
 		|| ft_strncmp(line + j, "C", 1) == 0)
 		return (0);
@@ -111,14 +111,14 @@ static int	get_into_file(t_data *data, char **map, int i)
 		if (map[i][j + 1] && ft_isprint(map[i][j + 1])
 			&& !ft_isdigit(map[i][j]))
 		{
-			if (fill_direction_textures(&data->texture, map[i], j) == 1)
-				return (error_message(map[i], ERR_TEXTURE_INVALID));
+			if (fill_direction_textures(data, &data->texture, map[i], j) == 1)
+				return (error_message(data, map[i], ERR_TEXTURE_INVALID));
 			return (2);
 		}
 		else
 		{
 			if (fill_color_textures(&data->texture, map[i], j) == 1)
-				return (error_message(map[i], ERR_TEXTURE_INVALID));
+				return (error_message(data, map[i], ERR_TEXTURE_INVALID));
 			return (2);
 		}
 	}

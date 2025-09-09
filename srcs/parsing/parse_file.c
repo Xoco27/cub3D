@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:33:53 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/27 17:29:51 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:57:23 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	fill_tab(int row, int column, int i, t_data *data)
 		data->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->mapinfo.file[row])
 		{
-			error_message(NULL, ERR_MALLOC);
+			error_message(data, NULL, ERR_MALLOC);
 			return (free_tab((void **)data->mapinfo.file));
 		}
 		while (line[i] != '\0')
@@ -36,11 +36,11 @@ void	fill_tab(int row, int column, int i, t_data *data)
 	data->mapinfo.file[row] = NULL;
 }
 
-void parse_map(t_data *data, char *av)
+void	parse_map(t_data *data, char *av)
 {
-	int     row;
-	int     i;
-	size_t  column;
+	int		row;
+	int		i;
+	size_t	column;
 
 	i = 0;
 	row = 0;
@@ -49,16 +49,15 @@ void parse_map(t_data *data, char *av)
 	data->mapinfo.path = av;
 	if (!(data->mapinfo.file))
 	{
-		error_message(NULL, ERR_MALLOC);
+		error_message(data, NULL, ERR_MALLOC);
 		return ;
 	}
 	data->mapinfo.fd = open(av, O_RDONLY);
 	if (data->mapinfo.fd < 0)
-		error_message(av, strerror(errno));
+		error_message(data, av, strerror(errno));
 	else
 	{
 		fill_tab(row, column, i, data);
 		close(data->mapinfo.fd);
 	}
 }
-

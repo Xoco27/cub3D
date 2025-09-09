@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 20:14:49 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/09 12:58:54 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #  define SPEED 0.2
 # endif
 # ifndef TILE
-#  define TILE 128
+#  define TILE 64
 # endif
 # ifndef PI
 #  define PI 3.141592653589793
@@ -163,7 +163,7 @@ void	ft_exit(t_data *data);
 int		is_map_valid(t_data *data);
 int		another_check(t_data *data);
 int		non_valid(char **map);
-int		check_filename(char *arg, bool cub);
+int		check_filename(t_data *data, char *arg, bool cub);
 int		initiate(t_data *data);
 void	print_player(void *img, double x, double y, t_data *data);
 void	ray_cast(t_data *data, int i);
@@ -177,13 +177,13 @@ int		render(t_data *data);
 double	ray_hori_loop(t_data *data, double y_hori, double dy);
 double	ray_vert_loop(t_data *data, double x_vert, double dx);
 void	depth_wall_x(t_data *data, double *depth, double *wall_x, int flag);
-int		error_message(char *detail, char *str);
+int		error_message(t_data *data, char *detail, char *str);
 int		parse_args(t_data *data, char **av);
 void	parse_map(t_data *data, char *av);
 void	free_tab(void **tab);
 void	fill_tab(int row, int column, int i, t_data *data);
-bool	validate_walls(char **map);
-int		validate_player_position(char **file);
+bool	validate_walls(char **map, int i);
+int		validate_player_position(char **file, int i);
 int		validate_elements(char **file);
 int		verify_file_data(t_data *data, char **map);
 int		fill_color_textures(t_texture *tex, char *line, int j);

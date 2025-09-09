@@ -6,13 +6,20 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:48:38 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/08/26 17:07:58 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:02:29 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	error_message(char *detail, char *str)
+void	free_all(t_data *data)
+{
+	if (!data)
+		return ;
+	// tout free ici
+}
+
+int	error_message(t_data *data, char *detail, char *str)
 {
 	ft_putstr_fd("cub3D: Error", 2);
 	if (detail)
@@ -26,5 +33,6 @@ int	error_message(char *detail, char *str)
 		ft_putstr_fd(str, 2);
 	}
 	ft_putstr_fd("\n", 2);
-	return (1);
+	free_all(data);
+	exit(EXIT_FAILURE);
 }
