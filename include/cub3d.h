@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 16:07:04 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:34:52 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # endif
 # define ERR_MAP_MISSING "Missing map"
 # define ERR_WALL_INVALID "Invalid Walls"
-# define ERR_PLAYER_POS "Invalid player position"
+# define ERR_PLAYER_POS "Invalid character"
 # define ERR_MALLOC "Error malloc"
 # define ERR_ELEMENT "Error element"
 # define ERR_FILE "Error file"
@@ -190,5 +190,6 @@ int		create_map(t_data *data, char **file);
 bool	is_map_line(char *line);
 int		is_texture_line(char *line);
 int		mouse(int x, int y, t_data *data);
+void	wh(t_data *data);
 
 #endif

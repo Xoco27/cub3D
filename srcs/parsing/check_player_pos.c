@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player_pos.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:48:40 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 17:13:56 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:13:52 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,13 @@ int	validate_player_position(char **file, int i)
 		{
 			if (file[i][j] == 'N' || file[i][j] == 'S'
 				|| file[i][j] == 'E' || file[i][j] == 'W')
+			{
 				if (!check_player(file, i, j, start, &player_count))
 					return (0);
+			}
+			else if (file[i][j] != '0' && file[i][j] != '1'
+				&& file[i][j] != '\n' && file[i][j] != ' ')
+				return (0);
 			j++;
 		}
 		i++;

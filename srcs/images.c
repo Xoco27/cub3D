@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 18:56:21 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:34:28 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,6 @@ int	check_filename(t_data *data, char *arg, bool cub)
 	if (!cub && !is_xpm_file(arg))
 		return (error_message(data, arg, ERR_INVALID_FILENAME));
 	return (0);
-}
-
-void	wh(t_data *data)
-{
-	int	i;
-	int	j;
-
-	data->map.width = 0;
-	j = 0;
-	while (data->tab[j])
-	{
-		i = 0;
-		while (data->tab[j][i])
-			i++;
-		if (i > data->map.width)
-			data->map.width = i;
-		j++;
-	}
-	data->map.height = j;
-	data->player.width = TILE;
-	data->player.height = TILE;
-	pos(data->tab, data);
 }
 
 void	create_images(t_data *data)

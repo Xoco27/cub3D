@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:26:38 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/08 20:23:03 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:34:35 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,26 @@ double	ray_hori_loop(t_data *data, double y_hori, double dy)
 		j++;
 	}
 	return (x_hori);
+}
+
+void	wh(t_data *data)
+{
+	int	i;
+	int	j;
+
+	data->map.width = 0;
+	j = 0;
+	while (data->tab[j])
+	{
+		i = 0;
+		while (data->tab[j][i])
+			i++;
+		if (i > data->map.width)
+			data->map.width = i;
+		j++;
+	}
+	data->map.height = j;
+	data->player.width = TILE;
+	data->player.height = TILE;
+	pos(data->tab, data);
 }

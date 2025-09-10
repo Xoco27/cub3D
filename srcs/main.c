@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 16:51:14 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:29:57 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	on_destroy(t_data *data)
 	free_map(data->tab);
 	free_map(data->map.file);
 	exit(0);
-	return (0);
+	//return (0);
 }
 
 int	on_keypress(int keysym, t_data *data)
