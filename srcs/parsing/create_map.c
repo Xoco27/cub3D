@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:23:48 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/08 20:40:02 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/10 15:58:43 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ static int	copy_map_lines(t_data *data, char **map, int i, int height)
 		data->tab[k] = ft_strdup(map[i]);
 		if (!data->tab[k])
 		{
-			while (k > 0)
-				free(data->tab[--k]);
-			free(data->tab);
+			free_map(data->tab);
 			return (1);
 		}
 		k++;

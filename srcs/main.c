@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 17:50:46 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:51:14 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	on_destroy(t_data *data)
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	free_map(data->tab);
+	free_map(data->map.file);
 	exit(0);
 	return (0);
 }
@@ -64,18 +65,12 @@ int	main(int argc, char **argv)
 		return (perror("Error\nNot enough or too much arguments."), 1);
 	parse_args(&data, argv);
 	verify_file_data(&data, data.map.file);
-	data.move = 0;
-	if (data.tab == NULL)
-		return (perror("Error\nEmpty map"), 1);
 	if (!data.tab)
 		return (perror("Error\nMap making failed."), 1);
-	if (data.tab == NULL)
-		return (perror("Error\nEmpty map"), 1);
 	set_win(&data);
 	if (initiate(&data) == 1)
 		return (perror("Error\nFailed to initiate data or window"), 1);
 	create_images(&data);
 	hook(&data);
-	free_map(data.tab);
 	return (0);
 }

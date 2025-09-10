@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 18:53:42 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:07:04 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ typedef struct s_data
 	char		**assets;
 	int			win_width;
 	int			win_height;
-	int			move;
 	int			screen_dist;
 	int			scale;
 	int			keys[512];
