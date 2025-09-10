@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 18:51:19 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 15:07:52 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	rotate(t_data *data, int keysym)
 	{
 		data->player.angle -= 6 * PI / 180;
 		if (data->player.angle < 0)
-			data->player.angle = 360 * PI / 180;
+			data->player.angle = 354 * PI / 180;
 	}
 	if (keysym == XK_Right)
 	{
 		data->player.angle += 6 * PI / 180;
 		if (data->player.angle > 360 * PI / 180)
-			data->player.angle = 0;
+			data->player.angle = 6 * PI / 180;
 	}
 }
 
@@ -68,9 +68,9 @@ int	mouse(int x, int y, t_data *data)
 	dx = x - half_x;
 	data->player.angle += dx * sensitivity;
 	if (data->player.angle < 0)
-		data->player.angle += 2 * PI;
-	else if (data->player.angle >= 2 * PI)
-		data->player.angle -= 2 * PI;
+		data->player.angle = 354 * PI / 180;
+	else if (data->player.angle > 2 * PI)
+		data->player.angle = 6 * PI / 180;
 
 	mlx_mouse_move(data->mlx_ptr, data->win_ptr,
 		half_x, half_y);
