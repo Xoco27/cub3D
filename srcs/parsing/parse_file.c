@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:33:53 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 15:19:51 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:30:33 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	parse_map(t_data *data, char *av)
 		error_message(data, av, strerror(errno));
 	else
 	{
-		fill_tab(row, column, i, data);
+		//fill_tab(row, column, i, data);
 		close(data->map.fd);
 	}
 }

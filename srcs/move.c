@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 17:59:19 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:32:55 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	rotate(t_data *data, int keysym)
 	{
 		data->player.angle -= 6 * PI / 180;
 		if (data->player.angle < 0)
-			data->player.angle = 360 * PI / 180;
+			data->player.angle = 354 * PI / 180;
 	}
 	if (keysym == XK_Right)
 	{
 		data->player.angle += 6 * PI / 180;
 		if (data->player.angle > 360 * PI / 180)
-			data->player.angle = 0;
+			data->player.angle = 6 * PI / 180;
 	}
 }
 
@@ -68,9 +68,9 @@ int	mouse(int x, int y, t_data *data)
 	dx = x - half_x;
 	data->player.angle += dx * sensitivity;
 	if (data->player.angle < 0)
-		data->player.angle += 2 * PI;
-	else if (data->player.angle >= 2 * PI)
-		data->player.angle -= 2 * PI;
+		data->player.angle = 360 * PI / 180;
+	else if (data->player.angle > 2 * PI)
+		data->player.angle = 0 * PI / 180;
 
 	mlx_mouse_move(data->mlx_ptr, data->win_ptr,
 		half_x, half_y);
@@ -83,9 +83,9 @@ void	update_pos(t_data *data, int keysym)
 	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
 		&& data->player.next_y >= 0 && data->player.next_y < data->map.height
 		&& data->player.next_x >= 0 && data->player.next_x < data->map.width
-		&& (data->tab[(int)(data->player.next_y + 0.2)]
+		&& (data->map.file[(int)(data->player.next_y + 0.2)]
 		[(int)(data->player.next_x + 0.2)] != '1')
-		&& (data->tab[(int)(data->player.next_y - 0.2)]
+		&& (data->map.file[(int)(data->player.next_y - 0.2)]
 		[(int)(data->player.next_x - 0.2)] != '1'))
 	{
 		data->player.pos_x = data->player.next_x;

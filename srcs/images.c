@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   images.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:43:30 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 18:03:42 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:34:28 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,52 +68,6 @@ int	check_filename(t_data *data, char *arg, bool cub)
 	return (0);
 }
 
-// void	wh(t_data *data)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	data->map.width = 0;
-// 	while (data->tab[i])
-// 		i++;
-// 	data->map.height = i;
-// 	j = 0;
-// 	while (data->tab[j])
-// 	{
-// 		while (data->tab[j][i])
-// 			i++;
-// 		if (i > data->map.width)
-// 			data->map.width = i;
-// 		j++;
-// 	}
-// 	data->player.width = TILE;
-// 	data->player.height = TILE;
-// 	pos(data->tab, data);
-// }
-
-void	wh(t_data *data)
-{
-	int	i;
-	int	j;
-
-	data->map.width = 0;
-	j = 0;
-	while (data->tab[j])
-	{
-		i = 0;
-		while (data->tab[j][i])
-			i++;
-		if (i > data->map.width)
-			data->map.width = i;
-		j++;
-	}
-	data->map.height = j;
-	data->player.width = TILE;
-	data->player.height = TILE;
-	pos(data->tab, data);
-}
-
 void	create_images(t_data *data)
 {
 	wh(data);
@@ -123,28 +77,4 @@ void	create_images(t_data *data)
 	data->assets[2] = ft_strdup(data->texture.east);
 	data->assets[3] = ft_strdup(data->texture.west);
 	init_img(data, data->img);
-	// data->map.floor = mlx_xpm_file_to_image(data->mlx_ptr,
-	// 		"assets/floor.xpm", &data->player.width, &data->player.height);
-	// data->player.down = mlx_xpm_file_to_image(data->mlx_ptr,
-	// 		"assets/link_down.xpm", &data->player.width, &data->player.height);
-	//print_map((*data).map, data);
-}
-
-void	destroy(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < 5)
-	{
-		if (i != 4)
-			free(data->assets[i]);
-		mlx_destroy_image(data->mlx_ptr, data->img[i].img);
-		i++;
-	}
-	free(data->assets);
-	free(data->texture.east);
-	free(data->texture.south);
-	free(data->texture.west);
-	free(data->texture.north);
 }

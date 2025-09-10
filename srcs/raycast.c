@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:57:58 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 17:59:30 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/10 15:03:16 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int	render(t_data *data)
 {
-	int	i;
-
-	i = 0;
 	draw_floor_and_sky(data);
-	ray_cast(data, i);
+	ray_cast(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img[0].img, 0, 0);
 	return (0);
@@ -93,15 +90,17 @@ static void	display_walls(t_data *data, double proj_height,
 	}
 }
 
-void	ray_cast(t_data *data, int i)
+void	ray_cast(t_data *data)
 {
+	int		i;
 	double	ray_angle;
 	double	depth;
 	double	proj_height;
 	double	wall_x;
 
+	i = 0;
 	ray_angle = data->player.angle - data->fov / 2 + 0.0001;
-	while (i++ < data->num_rays)
+	while (i < data->num_rays)
 	{
 		ray_vert(data, cos(ray_angle), sin(ray_angle));
 		ray_hori(data, cos(ray_angle), sin(ray_angle));
@@ -114,5 +113,6 @@ void	ray_cast(t_data *data, int i)
 		data->tex_pos = 0;
 		display_walls(data, proj_height, wall_x, i);
 		ray_angle += data->delta_angle;
+		i++;
 	}
 }
