@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:38:56 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/08 20:38:33 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:11:02 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ bool	is_map_line(char *line)
 {
 	while (*line)
 	{
-		if (*line == 'F' || *line == 'C')
+		if (*line == 'F' || *line == 'C' || ft_strncmp(line, "NO ", 3) == 0
+			|| ft_strncmp(line, "SO ", 3) == 0
+			|| ft_strncmp(line, "EA ", 3) == 0
+			|| ft_strncmp(line, "WE ", 3) == 0)
 			return (false);
 		else if (*line == '1')
 			return (true);
@@ -43,30 +46,44 @@ bool	is_map_line(char *line)
 	return (false);
 }
 
+static bool	is_full_wall_line(char *line)
+{
+	int i = 0;
+	while (line[i])
+	{
+		if (!isspace((unsigned char)line[i]) && line[i] != '1')
+			return false;
+		i++;
+	}
+	return true;
+}
+
 bool	validate_walls(char **file, int i)
 {
 	int	start;
+	int	end;
 
-	start = 0;
-	i = 0;
 	if (!file)
 		return (false);
+	start = 0;
 	while (file[start] && !is_map_line(file[start]))
 		start++;
 	if (!file[start])
 		return (false);
-	if (!is_line_closed(file[start]))
+
+	end = start;
+	while (file[end])
+		end++;
+	end--;
+	if (!is_full_wall_line(file[start]))
 		return (false);
-	i = start + 1;
-	while (file[i + 1])
+	for (i = start + 1; i < end; i++)
 	{
-		if (file[i + 1] && file[i + 2] == NULL)
-			break ;
 		if (!is_line_closed(file[i]))
 			return (false);
-		i++;
 	}
-	if (!is_line_closed(file[i]))
+	if (!is_full_wall_line(file[end]))
 		return (false);
+
 	return (true);
 }
