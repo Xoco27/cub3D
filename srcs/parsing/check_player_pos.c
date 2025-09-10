@@ -47,9 +47,10 @@ int	validate_player_position(char **file, int i)
 				if (!check_player(file, i, j, start, &player_count))
 					return (0);
 			}
-			else if (file[i][j] != '0' && file[i][j] != '1'
-				&& file[i][j] != '\n' && file[i][j] != ' ')
+			else if (file[i][j] != '0' && file[i][j] != '1' && file[i][j] != ' ' && file[i][j] != '\n')
+			{
 				return (0);
+			}
 			j++;
 		}
 		i++;
