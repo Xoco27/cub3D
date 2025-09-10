@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:48:40 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 18:59:44 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:05:22 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ int	validate_player_position(char **file, int i)
 		{
 			if (file[i][j] == 'N' || file[i][j] == 'S'
 				|| file[i][j] == 'E' || file[i][j] == 'W')
+			{
 				if (!check_player(file, i, j, start, &player_count))
 					return (0);
-			if (file[i][j] != 'N' || file[i][j] != 'S'
-				|| file[i][j] != 'E' || file[i][j] != 'W'
-				|| file[i][j] != '1' || file[i][j] != '0'
-				|| file[i][j] != ' ' || file[i][j] != '\t')
-				return (false);
+			}
+			else if (file[i][j] != '0' && file[i][j] != '1' && file[i][j] != ' ' && file[i][j] != '\n')
+			{
+				return (0);
+			}
 			j++;
 		}
 		i++;
