@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 17:29:57 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/16 15:31:10 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ int	on_destroy(t_data *data)
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
-	free_map(data->tab);
-	free_map(data->map.file);
 	exit(0);
-	//return (0);
+	return (0);
 }
 
 int	on_keypress(int keysym, t_data *data)
@@ -66,10 +64,16 @@ int	main(int argc, char **argv)
 	parse_args(&data, argv);
 	verify_file_data(&data, data.map.file);
 	if (!data.tab)
+	{
+		free_map(data.map.file);
 		return (perror("Error\nMap making failed."), 1);
+	}
 	set_win(&data);
 	if (initiate(&data) == 1)
+	{
+		free_map(data.tab);
 		return (perror("Error\nFailed to initiate data or window"), 1);
+	}
 	create_images(&data);
 	hook(&data);
 	return (0);

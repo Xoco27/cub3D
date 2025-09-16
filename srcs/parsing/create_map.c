@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:23:48 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/10 17:01:00 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/16 14:27:52 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,20 @@ int	create_map(t_data *data, char **map)
 	while (map[i] && !is_map_line(map[i]))
 		i++;
 	if (!map[i])
+	{
+		free_map(map);
 		return (1);
+	}
 	height = map_height(map, i);
 	if (height == 0)
+	{
+		free_map(map);
 		return (1);
+	}
 	if (copy_map_lines(data, map, i, height))
+	{
+		free_map(map);
 		return (1);
+	}
 	return (0);
 }

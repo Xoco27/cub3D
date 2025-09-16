@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 17:32:55 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/16 14:19:14 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void	update_pos(t_data *data, int keysym)
 	if ((keysym == XK_w || keysym == XK_s || keysym == XK_a || keysym == XK_d)
 		&& data->player.next_y >= 0 && data->player.next_y < data->map.height
 		&& data->player.next_x >= 0 && data->player.next_x < data->map.width
-		&& (data->map.file[(int)(data->player.next_y + 0.2)]
+		&& (data->tab[(int)(data->player.next_y + 0.2)]
 		[(int)(data->player.next_x + 0.2)] != '1')
-		&& (data->map.file[(int)(data->player.next_y - 0.2)]
+		&& (data->tab[(int)(data->player.next_y - 0.2)]
 		[(int)(data->player.next_x - 0.2)] != '1'))
 	{
 		data->player.pos_x = data->player.next_x;

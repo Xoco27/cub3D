@@ -10,17 +10,18 @@ MLX_DIR = mlx
 ASSETS_DIR = assets
 MAPS_DIR = maps
 
-CUB3D =	srcs/get_next_line.c srcs/images.c srcs/main.c \
-			srcs/make_char.c srcs/make_map.c srcs/render.c srcs/utils.c \
-			srcs/raycast.c \
+CUB3D =		srcs/get_next_line.c srcs/images.c \
+			srcs/main.c \
+			srcs/make_char.c srcs/make_map.c \
+			srcs/render.c \
+			srcs/utils.c srcs/raycast.c \
 			srcs/parsing/check_map_walls.c \
 			srcs/parsing/check.c \
 			srcs/parsing/parse_file.c \
 			srcs/error_message.c \
 			srcs/parsing/check_player_pos.c \
 			srcs/parsing/check_elements.c \
-			srcs/free.c \
-			srcs/parsing/verify_file_data.c \
+			srcs/free.c srcs/parsing/verify_file_data.c \
 			srcs/parsing/verify_colors.c \
 			srcs/parsing/create_map.c \
 			srcs/move.c srcs/norm.c \
