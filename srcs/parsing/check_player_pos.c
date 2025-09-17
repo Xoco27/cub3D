@@ -3,56 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   check_player_pos.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:48:40 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/16 15:24:41 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:16:08 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	check_player(char **file, int i, int j,
-		int start, int *player_count)
+static int	check_player(t_pos *p, int *player_count)
 {
 	(*player_count)++;
-	if (i == start || !file[i + 1] || j == 0 || !file[i][j + 1]
-		|| file[i - 1][j] == ' ' || file[i + 1][j] == ' '
-		|| file[i][j - 1] == ' ' || file[i][j + 1] == ' ')
+	if (p->i == p->start || !p->file[p->i + 1]
+		|| p->j == 0 || !p->file[p->i][p->j + 1]
+		|| p->file[p->i - 1][p->j] == ' ' || p->file[p->i + 1][p->j] == ' '
+		|| p->file[p->i][p->j - 1] == ' ' || p->file[p->i][p->j + 1] == ' ')
 		return (0);
 	return (1);
 }
 
-int	validate_player_position(char **file, int i)
+static int	is_valid_char(char c)
 {
-	int	j;
-	int	player_count;
-	int	start;
+	return (c == '0' || c == '1' || c == ' ' || c == '\n'
+		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+static int	is_player_char(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+static int	process_map_char(t_pos *p, int *player_count)
+{
+	char	c;
+
+	c = p->file[p->i][p->j];
+	if (is_player_char(c))
+	{
+		if (!check_player(p, player_count))
+			return (0);
+	}
+	else if (!is_valid_char(c))
+		return (0);
+	return (1);
+}
+
+int	validate_player_position(char **file)
+{
+	t_pos	p;
+	int		j;
+	int		player_count;
 
 	player_count = 0;
-	start = 0;
-	while (file[start] && !is_map_line(file[start]))
-		start++;
-	if (!file[start])
+	p.start = 0;
+	while (file[p.start] && !is_map_line(file[p.start]))
+		p.start++;
+	if (!file[p.start])
 		return (0);
-	i = start;
-	while (file[i])
+	p.i = p.start;
+	while (file[p.i])
 	{
 		j = 0;
-		while (file[i][j])
+		while (file[p.i][j])
 		{
-			if (file[i][j] == 'N' || file[i][j] == 'S'
-				|| file[i][j] == 'E' || file[i][j] == 'W')
-			{
-				if (!check_player(file, i, j, start, &player_count))
-					return (0);
-			}
-			else if (file[i][j] != '0' && file[i][j] != '1'
-				&& file[i][j] != ' ' && file[i][j] != '\n')
+			p.file = file;
+			p.j = j;
+			if (!process_map_char(&p, &player_count))
 				return (0);
 			j++;
 		}
-		i++;
+		p.i++;
 	}
 	return (player_count == 1);
 }

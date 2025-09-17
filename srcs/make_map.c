@@ -3,43 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   make_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:48:22 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 14:50:00 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:23:54 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-char	**make_tab(char *filepath, int *line_count)
+static int	count_lines_in_file(char *filepath)
 {
-	char	*txt;
 	int		fd;
-	int		i;
-	char	**map;
+	int		count;
+	char	*line;
 
-	i = 0;
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
-		return (perror("Error\nError opening file"), NULL);
-	txt = get_next_line(fd);
-	while (txt)
+		return (-1);
+	count = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
-		i++;
-		free(txt);
-		txt = get_next_line(fd);
+		count++;
+		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
-	if (i == 0)
-		return (perror("Error\nEmpty map file"), NULL);
-	*line_count = i;
-	fd = open(filepath, O_RDONLY);
-	if (fd < 0)
-		return (perror("Error\nError reopening file"), NULL);
-	map = malloc(sizeof(char *) * (i + 1));
+	return (count);
+}
+
+static char	**alloc_map(int lines)
+{
+	char	**map;
+
+	map = malloc(sizeof(char *) * (lines + 1));
 	if (!map)
-		return (perror("Error\nMalloc failed"), NULL);
+	{
+		perror("Error\nMalloc failed");
+		return (NULL);
+	}
+	return (map);
+}
+
+char	**make_tab(char *filepath, int *line_count)
+{
+	int		lines;
+	char	**map;
+
+	lines = count_lines_in_file(filepath);
+	if (lines < 0)
+		return (perror("Error\nError opening file"), NULL);
+	if (lines == 0)
+		return (perror("Error\nEmpty map file"), NULL);
+	*line_count = lines;
+	map = alloc_map(lines);
+	if (!map)
+		return (NULL);
 	return (fill_rows(map, filepath));
 }
 
@@ -76,37 +96,4 @@ void	print_img(void *img, int x, int y, t_data *data)
 {
 	mlx_put_image_to_window(data->mlx_ptr,
 		data->win_ptr, img, x * TILE, y * TILE);
-}
-
-void	print_map(char **map, t_data *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	if (!map || !map[y])
-		return ;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == '0' || map[y][x] == 'P' || map[y][x] == '1')
-				print_img(data->img[1].img, x, y, data);
-			x++;
-		}
-		y++;
-	}
-}
-
-int	initiate(t_data *data)
-{
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
-		return (perror("Error\nFailure initiating mlx."), 1);
-	data->win_ptr = mlx_new_window(data->mlx_ptr,
-			data->win_width, data->win_height, "Cub3D");
-	if (!data->win_ptr)
-		return (perror("Error\nFailure initiating window"), 1);
-	return (0);
 }

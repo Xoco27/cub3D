@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:08:57 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/16 14:15:19 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:16:28 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	validate_map(t_data *data)
 		return (error_message(data, *data->map.file, ERR_MAP_MISSING));
 	if (!validate_walls(data->map.file, i))
 		return (error_message(data, *data->map.file, ERR_WALL_INVALID));
-	i = 0;
-	if (!validate_player_position(data->map.file, i))
+	if (!validate_player_position(data->map.file))
 		return (error_message(data, *data->map.file, ERR_PLAYER_POS));
 	if (!validate_elements(data->map.file))
 		(error_message(data, *data->map.file, ERR_ELEMENT));

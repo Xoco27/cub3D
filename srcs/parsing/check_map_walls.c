@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:38:56 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/17 17:57:29 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:19:54 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ bool	validate_walls(char **file, int i)
 	end--;
 	if (!is_full_wall_line(file[start]))
 		return (false);
-	for (i = start + 1; i < end; i++)
+	i = start;
+	while (i++ < end)
 	{
 		if (!is_line_closed(file[i]))
 			return (false);

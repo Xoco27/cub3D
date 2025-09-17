@@ -4,7 +4,7 @@ WE assets/test/west.xpm
 EA assets/test/south.xpm
 
 F 20,20,20
-C 200,200,200
+C 200,200,-200
 
 11111
 10001
