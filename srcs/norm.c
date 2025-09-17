@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norm.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:26:38 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 17:34:35 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:08:31 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ double	ray_vert_loop(t_data *data, double x_vert, double dx)
 		if ((int)y_vert < 0 || (int)y_vert >= data->map.height
 			|| (int)x_vert < 0 || (int)x_vert >= data->map.width)
 			break ;
-		if (data->tab[(int)y_vert][(int)x_vert] == '1')
+		if (data->tab[(int)y_vert][(int)x_vert] == '1'
+			|| data->tab[(int)y_vert][(int)x_vert] == ' ')
 			break ;
 		x_vert += dx;
 		y_vert += dy;
@@ -59,6 +60,20 @@ double	ray_vert_loop(t_data *data, double x_vert, double dx)
 		j++;
 	}
 	return (y_vert);
+}
+
+static int	check_map_collision(t_data *data, double x_hori, double y_hori)
+{
+	int	iy;
+
+	iy = (int)y_hori;
+	if (iy < 0 || iy >= data->map.height)
+		return (1);
+	if ((int)x_hori < 0 || (int)x_hori >= (int)ft_strlen(data->tab[iy]))
+		return (1);
+	if (data->tab[iy][(int)x_hori] == '1' || data->tab[iy][(int)x_hori] == ' ')
+		return (1);
+	return (0);
 }
 
 double	ray_hori_loop(t_data *data, double y_hori, double dy)
@@ -75,10 +90,7 @@ double	ray_hori_loop(t_data *data, double y_hori, double dy)
 	j = 0;
 	while (j < data->max_depth)
 	{
-		if ((int)y_hori < 0 || (int)y_hori >= data->map.height
-			|| (int)x_hori < 0 || (int)x_hori >= data->map.width)
-			break ;
-		if (data->tab[(int)y_hori][(int)x_hori] == '1')
+		if (check_map_collision(data, x_hori, y_hori))
 			break ;
 		x_hori += dx;
 		y_hori += dy;

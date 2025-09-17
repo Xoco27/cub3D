@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 17:34:52 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:15:09 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@
 # include <X11/keysym.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+
+typedef struct s_pos
+{
+	char	**file;
+	int		i;
+	int		j;
+	int		start;
+}	t_pos;
 
 typedef struct s_color
 {
@@ -182,7 +190,7 @@ void	parse_map(t_data *data, char *av);
 void	free_tab(void **tab);
 void	fill_tab(int row, int column, int i, t_data *data);
 bool	validate_walls(char **map, int i);
-int		validate_player_position(char **file, int i);
+int		validate_player_position(char **file);
 int		validate_elements(char **file);
 int		verify_file_data(t_data *data, char **map);
 int		fill_color_textures(t_texture *tex, char *line, int j);
@@ -191,5 +199,6 @@ bool	is_map_line(char *line);
 int		is_texture_line(char *line);
 int		mouse(int x, int y, t_data *data);
 void	wh(t_data *data);
+int		on_destroy(t_data *data);
 
 #endif

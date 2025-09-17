@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:38:56 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/10 18:11:02 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:19:54 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,16 @@ bool	is_map_line(char *line)
 
 static bool	is_full_wall_line(char *line)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (line[i])
 	{
 		if (!isspace((unsigned char)line[i]) && line[i] != '1')
-			return false;
+			return (false);
 		i++;
 	}
-	return true;
+	return (true);
 }
 
 bool	validate_walls(char **file, int i)
@@ -70,20 +72,19 @@ bool	validate_walls(char **file, int i)
 		start++;
 	if (!file[start])
 		return (false);
-
 	end = start;
 	while (file[end])
 		end++;
 	end--;
 	if (!is_full_wall_line(file[start]))
 		return (false);
-	for (i = start + 1; i < end; i++)
+	i = start;
+	while (i++ < end)
 	{
 		if (!is_line_closed(file[i]))
 			return (false);
 	}
 	if (!is_full_wall_line(file[end]))
 		return (false);
-
 	return (true);
 }

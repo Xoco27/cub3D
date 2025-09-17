@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:33:53 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/16 15:24:35 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:57:51 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	parse_map(t_data *data, char *av)
 		error_message(data, av, strerror(errno));
 	else
 	{
-		//fill_tab(row, column, i, data);
 		close(data->map.fd);
 	}
 }

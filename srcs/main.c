@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:17:44 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 18:21:50 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:24:36 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,20 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	memset(&data, 0, sizeof(t_data));
 	if (argc != 2)
 		return (perror("Error\nNot enough or too much arguments."), 1);
 	parse_args(&data, argv);
 	verify_file_data(&data, data.map.file);
 	if (!data.tab)
 	{
-		free_map(data.map.file);
+		destroy(&data);
 		return (perror("Error\nMap making failed."), 1);
 	}
 	set_win(&data);
 	if (initiate(&data) == 1)
 	{
-		free_map(data.tab);
+		destroy(&data);
 		return (perror("Error\nFailed to initiate data or window"), 1);
 	}
 	create_images(&data);

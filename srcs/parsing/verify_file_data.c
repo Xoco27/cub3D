@@ -3,75 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   verify_file_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:40:57 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/10 15:41:55 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:10:53 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-// static char	*get_texture_path(char *line, int j)
-// {
-// 	int		len;
-// 	int		i;
-// 	char	*path;
-
-// 	while (line[j] && (line[j] == ' ' || line[j] == '\t'))
-// 		j++;
-// 	len = j;
-// 	while (line[len] && (line[len] != ' ' && line[len] != '\t'))
-// 		len++;
-// 	path = malloc(sizeof(char) * (len - j + 1));
-// 	if (!path)
-// 		return (NULL);
-// 	i = 0;
-// 	while (line[j] && (line[j] != ' ' && line[j] != '\t' && line[j] != '\n'))
-// 		path[i++] = line[j++];
-// 	path[i] = '\0';
-// 	while (line[j] && (line[j] == ' ' || line[j] == '\t'))
-// 		j++;
-// 	if (line[j] && line[j] != '\n')
-// 	{
-// 		free(path);
-// 		path = NULL;
-// 	}
-// 	return (path);
-// }
-
-// static int	fill_direction_textures(t_texture *textures, char *line, int j)
-// {
-// 	if (line[j + 2] && ft_isprint(line[j + 2]))
-// 		return (1);
-// 	if (line[j] == 'N' && line[j + 1] == 'O' && !(textures->north))
-// 		textures->north = get_texture_path(line, j + 2);
-// 	else if (line[j] == 'S' && line[j + 1] == 'O' && !(textures->south))
-// 		textures->south = get_texture_path(line, j + 2);
-// 	else if (line[j] == 'W' && line[j + 1] == 'E' && !(textures->west))
-// 		textures->west = get_texture_path(line, j + 2);
-// 	else if (line[j] == 'E' && line[j + 1] == 'A' && !(textures->east))
-// 		textures->east = get_texture_path(line, j + 2);
-// 	else
-// 		return (1);
-// 	return (0);
-// }
-
-static int	set_texture_path(t_data *data, char **dest,
-	char *line, int j, int skip)
+static int	set_texture_path(char **dest, char *line, int j, int skip)
 {
 	char	*path;
 	int		fd;
+	int		dir_fd;
 
 	if (line[j + skip] != ' ' && line[j + skip] != '\t')
 		return (1);
 	path = ft_strtrim(line + j + skip, " \t\n");
 	if (!path)
 		return (1);
+	dir_fd = open(path, O_DIRECTORY);
+	if (dir_fd != -1)
+	{
+		close(dir_fd);
+		free(path);
+		return (1);
+	}
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		return (error_message(data, path, ERR_TEXTURE_INVALID));
 		free(path);
 		return (1);
 	}
@@ -80,17 +41,17 @@ static int	set_texture_path(t_data *data, char **dest,
 	return (0);
 }
 
-static int	fill_direction_textures(t_data *data, t_texture *tex,
+static int	fill_direction_textures(t_texture *tex,
 	char *line, int j)
 {
 	if (ft_strncmp(line + j, "NO", 2) == 0)
-		return (set_texture_path(data, &tex->north, line, j, 2));
+		return (set_texture_path(&tex->north, line, j, 2));
 	else if (ft_strncmp(line + j, "SO", 2) == 0)
-		return (set_texture_path(data, &tex->south, line, j, 2));
+		return (set_texture_path(&tex->south, line, j, 2));
 	else if (ft_strncmp(line + j, "WE", 2) == 0)
-		return (set_texture_path(data, &tex->west, line, j, 2));
+		return (set_texture_path(&tex->west, line, j, 2));
 	else if (ft_strncmp(line + j, "EA", 2) == 0)
-		return (set_texture_path(data, &tex->east, line, j, 2));
+		return (set_texture_path(&tex->east, line, j, 2));
 	else if (ft_strncmp(line + j, "F", 1) == 0
 		|| ft_strncmp(line + j, "C", 1) == 0)
 		return (0);
@@ -109,7 +70,7 @@ static int	get_into_file(t_data *data, char **map, int i)
 		if (map[i][j + 1] && ft_isprint(map[i][j + 1])
 			&& !ft_isdigit(map[i][j]))
 		{
-			if (fill_direction_textures(data, &data->texture, map[i], j) == 1)
+			if (fill_direction_textures(&data->texture, map[i], j) == 1)
 				return (error_message(data, map[i], ERR_TEXTURE_INVALID));
 			else
 			{
@@ -124,13 +85,26 @@ static int	get_into_file(t_data *data, char **map, int i)
 int	verify_file_data(t_data *data, char **map)
 {
 	int	i;
+	int	ret;
 
+	data->texture.north = NULL;
+	data->texture.south = NULL;
+	data->texture.east = NULL;
+	data->texture.west = NULL;
+	data->tab = NULL;
 	i = 0;
 	while (map[i])
 	{
-		get_into_file(data, map, i);
+		free_map(data->tab);
+		ret = get_into_file(data, map, i);
+		if (ret != 0)
+			return (1);
 		if (is_map_line(map[i]))
-			create_map(data, map);
+		{
+			ret = create_map(data, map);
+			if (ret != 0)
+				return (1);
+		}
 		i++;
 	}
 	return (0);
