@@ -6,7 +6,7 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:17:51 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/09 18:56:25 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/16 15:27:46 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,6 @@ void	destroy(t_data *data)
 	free(data->texture.south);
 	free(data->texture.west);
 	free(data->texture.north);
+	free_map(data->tab);
+	free_map(data->map.file);
 }
