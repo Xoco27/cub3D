@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 17:00:24 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/09 16:46:16 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/10 18:15:25 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ static int	is_map_liner(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (*line == 'F' || *line == 'C' || *line == '\0')
+		if (*line == 'F' || *line == 'C' || *line == '\0'
+			|| ft_strncmp(line, "NO ", 3) == 0
+			|| ft_strncmp(line, "SO ", 3) == 0
+			|| ft_strncmp(line, "EA ", 3) == 0
+			|| ft_strncmp(line, "WE ", 3) == 0)
 			return (0);
 		if (line[i] == '1')
 			return (1);
