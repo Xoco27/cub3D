@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:23:48 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/16 14:27:52 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:57:41 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,28 @@ static int	map_height(char **map, int i)
 	return (count);
 }
 
+static int	get_map_width(char **map, int i)
+{
+	int	max;
+	int	len;
+
+	max = 0;
+	while (map[i] && is_map_line(map[i]))
+	{
+		len = ft_strlen(map[i]);
+		if (len > max)
+			max = len;
+		i++;
+	}
+	return (max);
+}
+
 static int	copy_map_lines(t_data *data, char **map, int i, int height)
 {
+	int	width;
 	int	k;
 
+	width = get_map_width(map, i);
 	data->tab = malloc(sizeof(char *) * (height + 1));
 	if (!data->tab)
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norm.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:26:38 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 17:34:35 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:55:35 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ double	ray_vert_loop(t_data *data, double x_vert, double dx)
 		if ((int)y_vert < 0 || (int)y_vert >= data->map.height
 			|| (int)x_vert < 0 || (int)x_vert >= data->map.width)
 			break ;
-		if (data->tab[(int)y_vert][(int)x_vert] == '1')
+		if (data->tab[(int)y_vert][(int)x_vert] == '1'
+			|| data->tab[(int)y_vert][(int)x_vert] == ' ')
 			break ;
 		x_vert += dx;
 		y_vert += dy;
@@ -67,6 +68,8 @@ double	ray_hori_loop(t_data *data, double y_hori, double dy)
 	double	delta_depth;
 	double	dx;
 	int		j;
+	int		iy;
+	int		ix;
 
 	data->depth_hori = (y_hori - data->player.pos_y) / data->sin_a;
 	x_hori = data->player.pos_x + data->depth_hori * data->cos_a;
@@ -75,15 +78,18 @@ double	ray_hori_loop(t_data *data, double y_hori, double dy)
 	j = 0;
 	while (j < data->max_depth)
 	{
-		if ((int)y_hori < 0 || (int)y_hori >= data->map.height
-			|| (int)x_hori < 0 || (int)x_hori >= data->map.width)
+		iy = (int)y_hori;
+		ix = (int)x_hori;
+		if (iy < 0 || iy >= data->map.height)
 			break ;
-		if (data->tab[(int)y_hori][(int)x_hori] == '1')
+		if (ix < 0 || ix >= (int)ft_strlen(data->tab[iy]))
+			break ;
+		if (data->tab[iy][ix] == '1' || data->tab[iy][ix] == ' ')
 			break ;
 		x_hori += dx;
 		y_hori += dy;
 		data->depth_hori += delta_depth;
-		j++;
+		j++ ;
 	}
 	return (x_hori);
 }

@@ -1,15 +1,15 @@
 NO assets/test/north.xpm
 SO assets/test/south.xpm
 WE assets/test/west.xpm
-EA assets/test/east.xpm
+EA assets/test/south.xpm
 
 F 20,20,20
-C 200,200,-200
+C 200,200,200
 
 11111
 10001
+10E01
 10001
-10N01
 10001
 10001
 11001

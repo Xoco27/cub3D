@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:42:36 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/16 14:19:14 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:56:01 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,10 @@ int	mouse(int x, int y, t_data *data)
 		data->player.angle = 360 * PI / 180;
 	else if (data->player.angle > 2 * PI)
 		data->player.angle = 0 * PI / 180;
-
 	mlx_mouse_move(data->mlx_ptr, data->win_ptr,
 		half_x, half_y);
 	return (0);
 }
-
 
 void	update_pos(t_data *data, int keysym)
 {
@@ -85,8 +83,12 @@ void	update_pos(t_data *data, int keysym)
 		&& data->player.next_x >= 0 && data->player.next_x < data->map.width
 		&& (data->tab[(int)(data->player.next_y + 0.2)]
 		[(int)(data->player.next_x + 0.2)] != '1')
+		&& (data->tab[(int)(data->player.next_y + 0.2)]
+		[(int)(data->player.next_x + 0.2)] != ' ')
 		&& (data->tab[(int)(data->player.next_y - 0.2)]
-		[(int)(data->player.next_x - 0.2)] != '1'))
+		[(int)(data->player.next_x - 0.2)] != '1')
+		&& (data->tab[(int)(data->player.next_y - 0.2)]
+		[(int)(data->player.next_x - 0.2)] != ' '))
 	{
 		data->player.pos_x = data->player.next_x;
 		data->player.pos_y = data->player.next_y;

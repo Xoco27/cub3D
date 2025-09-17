@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/10 17:34:52 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/17 15:56:56 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,5 +191,6 @@ bool	is_map_line(char *line);
 int		is_texture_line(char *line);
 int		mouse(int x, int y, t_data *data);
 void	wh(t_data *data);
+int		on_destroy(t_data *data);
 
 #endif
