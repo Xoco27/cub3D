@@ -6,13 +6,13 @@
 /*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:38:56 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/17 18:39:38 by cfleuret         ###   ########.fr       */
+/*   Updated: 2025/09/18 14:59:43 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static bool	is_line_closed(char *line)
+bool	is_line_closed(char *line)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ bool	is_map_line(char *line)
 	return (false);
 }
 
-static bool	is_full_wall_line(char *line)
+bool	is_full_wall_line(char *line)
 {
 	int	i;
 
@@ -60,31 +60,12 @@ static bool	is_full_wall_line(char *line)
 	return (true);
 }
 
-bool	validate_walls(char **file, int i)
+bool	is_inside_map(char **map, int y, int x)
 {
-	int	start;
-	int	end;
+	return (y >= 0 && map[y] && x >= 0 && x < (int)ft_strlen(map[y]));
+}
 
-	if (!file)
-		return (false);
-	start = 0;
-	while (file[start] && !is_map_line(file[start]))
-		start++;
-	if (!file[start])
-		return (false);
-	end = start;
-	while (file[end])
-		end++;
-	end--;
-	if (!is_full_wall_line(file[start]))
-		return (false);
-	i = start;
-	while (i++ < end)
-	{
-		if (!is_line_closed(file[i]))
-			return (false);
-	}
-	if (!is_full_wall_line(file[end]))
-		return (false);
-	return (true);
+bool	is_open_cell(char c)
+{
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
