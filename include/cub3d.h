@@ -6,7 +6,7 @@
 /*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:19:37 by cfleuret          #+#    #+#             */
-/*   Updated: 2025/09/17 18:15:09 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/18 14:59:42 by mgarsaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ int		parse_args(t_data *data, char **av);
 void	parse_map(t_data *data, char *av);
 void	free_tab(void **tab);
 void	fill_tab(int row, int column, int i, t_data *data);
-bool	validate_walls(char **map, int i);
+bool	validate_walls(char **map);
 int		validate_player_position(char **file);
 int		validate_elements(char **file);
 int		verify_file_data(t_data *data, char **map);
@@ -200,5 +200,9 @@ int		is_texture_line(char *line);
 int		mouse(int x, int y, t_data *data);
 void	wh(t_data *data);
 int		on_destroy(t_data *data);
+bool	is_open_cell(char c);
+bool	is_inside_map(char **map, int y, int x);
+bool	is_full_wall_line(char *line);
+bool	is_line_closed(char *line);
 
 #endif
