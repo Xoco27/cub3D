@@ -27,7 +27,8 @@ CUB3D =		srcs/get_next_line.c srcs/images.c \
 			srcs/move.c srcs/norm.c \
 			srcs/texture.c \
 			srcs/jpleuresurlepoulet.c \
-			srcs/parsing/check_walls.c
+			srcs/parsing/check_walls.c \
+			srcs/printmap.c
 
 OBJS = $(CUB3D:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_file_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgarsaul <mgarsaul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfleuret <cfleuret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:40:57 by mgarsaul          #+#    #+#             */
-/*   Updated: 2025/09/17 18:10:53 by mgarsaul         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:50:22 by cfleuret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ static int	set_texture_path(char **dest, char *line, int j, int skip)
 	path = ft_strtrim(line + j + skip, " \t\n");
 	if (!path)
 		return (1);
+	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4) != 0)
+	{
+		free(path);
+		return (1);
+	}
 	dir_fd = open(path, O_DIRECTORY);
 	if (dir_fd != -1)
 	{
